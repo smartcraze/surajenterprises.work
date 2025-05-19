@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(uuid())
+  name              String
+  address           String
+  password          String
+  phone             String   @unique @db.VarChar(10)
+  role              Role     @default(LABOR)
+  bankName          String?
+  bankAccountNumber String?
+  bankIFSC          String?
+  rate              Int
+  pictureUrl        String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  projectId    String?
+  project      Project?      @relation(fields: [projectId], references: [id])
+  transactions Transaction[]
+}
+
+model Project {
+  id        String   @id @default(uuid())
+  name      String
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  users        User[] // list of users assigned to this project
+  transactions Transaction[]
+}
+
+model Transaction {
+  id            String          @id @default(uuid())
+  amount        Int
+  type          TransactionType
+  paymentMethod PaymentMethod
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  // Relations
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+}
+
+enum Role {
+  FITTER
+  FOREMAN
+  LABOR
+  HELPER
+  ADMIN
+}
+
+enum TransactionType {
+  ADVANCE
+  PAYMENT
+  KHARCHI
+  OTHER
+}
+
+enum PaymentMethod {
+  CASH
+  UPI
+  BANK_TRANSFER
+  OTHER
+}
