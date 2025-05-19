@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Absolutely Suraj bhai 💪 — let’s plan all the **main routes** (API endpoints) you'll need for your **Contractor Management System**.
 
-## Getting Started
+We're keeping things clean, modular, and ready for scale 🔥
+This will be organized into **Auth**, **Users**, **Projects**, **Transactions**, and **Reports**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛡️ AUTH ROUTES
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| METHOD | PATH           | DESCRIPTION                        |
+| ------ | -------------- | ---------------------------------- |
+| POST   | `/auth/signup` | Admin/Foreman registration         |
+| POST   | `/auth/login`  | Admin/Foreman login (phone + pass) |
+| POST   | `/auth/logout` | Logout (if using sessions/cookies) |
+| GET    | `/auth/me`     | Get logged-in user info            |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👤 USER ROUTES (Labors, Foremen, Admins, etc.)
 
-## Learn More
+| METHOD | PATH         | DESCRIPTION                          |
+| ------ | ------------ | ------------------------------------ |
+| GET    | `/users`     | List all users (with roles)          |
+| POST   | `/users`     | Create a user (LABOR, FOREMAN, etc.) |
+| GET    | `/users/:id` | Get single user detail               |
+| PUT    | `/users/:id` | Update user (rate, phone, etc.)      |
+| DELETE | `/users/:id` | Remove user                          |
 
-To learn more about Next.js, take a look at the following resources:
+✅ You can filter `?role=LABOR` etc., if needed
+✅ Only Admin/Foreman should access these
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ PROJECT ROUTES
 
-## Deploy on Vercel
+| METHOD | PATH            | DESCRIPTION                       |
+| ------ | --------------- | --------------------------------- |
+| GET    | `/projects`     | List all projects                 |
+| POST   | `/projects`     | Create a new project              |
+| GET    | `/projects/:id` | Project detail + associated users |
+| PUT    | `/projects/:id` | Update project info               |
+| DELETE | `/projects/:id` | Delete a project                  |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💸 TRANSACTION ROUTES
+
+| METHOD | PATH                | DESCRIPTION                                    |
+| ------ | ------------------- | ---------------------------------------------- |
+| GET    | `/transactions`     | All transactions (filter by type/user/project) |
+| POST   | `/transactions`     | Create transaction (advance, payment, etc.)    |
+| GET    | `/transactions/:id` | Get specific transaction                       |
+| PUT    | `/transactions/:id` | Edit transaction                               |
+| DELETE | `/transactions/:id` | Delete transaction                             |
+
+> 💡 Filter with query params like `?userId=xyz&type=PAYMENT&projectId=abc`
+
+---
+
+## 📊 REPORT / EXPORT ROUTES
+
+| METHOD | PATH                           | DESCRIPTION                                |
+| ------ | ------------------------------ | ------------------------------------------ |
+| GET    | `/reports/user/:id/monthly`    | Get a user's monthly earning report        |
+| GET    | `/reports/project/:id/summary` | All payments/advances by project           |
+| GET    | `/reports/export/:id/excel`    | Export single user's transactions as Excel |
+| GET    | `/reports/export/:id/pdf`      | Export payment proof as PDF                |
+
+---
+
+## 🧠 BONUS: Optional Routes
+
+| METHOD | PATH                        | DESCRIPTION               |
+| ------ | --------------------------- | ------------------------- |
+| POST   | `/users/:id/picture`        | Upload profile picture    |
+| POST   | `/projects/:id/assign-user` | Assign labor to a project |
+| GET    | `/dashboard`                | Admin dashboard summary   |
+
+---
+
+## 🔐 Access Control Rules (Summary)
+
+| Role    | Access Rights                                  |
+| ------- | ---------------------------------------------- |
+| ADMIN   | Everything                                     |
+| FOREMAN | Create/edit labors, payments, view own project |
+| LABOR   | No access (data-only user)                     |
+
+---
+
+Let me know if you want me to scaffold this in Express.js (with middleware, controllers, etc.), or if you're using Bun, I can tailor it to Bun/Next.js API routes too. Ready when you are 💻🔥
