@@ -26,6 +26,8 @@ model User {
   projectId    String?
   project      Project?      @relation(fields: [projectId], references: [id])
   transactions Transaction[]
+
+  KharchiStatus KharchiStatus[]
 }
 
 model Project {
@@ -40,6 +42,7 @@ model Project {
   status    ProjectStatus @default(ACTIVE)
   users        User[]
   transactions Transaction[]
+  kharchiStatus KharchiStatus[]
 }
 
 
@@ -56,6 +59,18 @@ model Transaction {
   projectId String?
   project   Project? @relation(fields: [projectId], references: [id])
 }
+
+model KharchiStatus {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id])
+  date      DateTime // store the Sunday date
+  paid      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
 
 enum Role {
   FITTER
