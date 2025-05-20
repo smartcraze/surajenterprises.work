@@ -80,7 +80,7 @@ export default function HeroSection() {
             </Button>
           </Link>
 
-          <Link href="/contact">
+          <Link href="#contact">
             <Button className="bg-white/80 text-black hover:bg-white hover:shadow-xl font-medium px-6 py-3 rounded-xl backdrop-blur-md transition border border-white/40">
               Contact Us
             </Button>

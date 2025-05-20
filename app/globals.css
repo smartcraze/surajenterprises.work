@@ -121,3 +121,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  scroll-padding-bottom: 100px;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+

@@ -1,4 +1,5 @@
 import { PT_Sans } from 'next/font/google';
+import Image from 'next/image';
 
 const ptSans = PT_Sans({
   weight: ['400', '700'],
@@ -38,15 +39,96 @@ export default function AboutUs() {
             <div className="absolute -top-3 left-8 bg-yellow-500 text-gray-800 font-semibold px-4 py-1 rounded-full text-sm">
               Lead Contractor
             </div>
-            <h2 className="text-3xl font-bold mb-4">Meet Our Lead Contractor</h2>
-            <h3 className="text-2xl font-semibold mb-6 text-yellow-400">Surendra Vishwakarma</h3>
-            <div className="space-y-6">
-              <p className="text-lg leading-relaxed">
-                With over <span className="font-semibold text-yellow-400">20 years of experience</span> in the construction field, Surendra Vishwakarma is the driving force behind Suraj Enterprises. His journey includes collaborations with industry leaders such as <span className="font-semibold text-yellow-400">Gina Engineering, Sapoorji Pallonji, and Shriram Company</span>, spanning across major cities including Bangalore, Vijayawada, and Pune.
-              </p>
-              <p className="text-lg leading-relaxed">
-                His exceptional leadership and dedication have earned him recognition as the <span className="font-semibold text-yellow-400">Best Contractor</span> on multiple occasions. Throughout his career, he has successfully delivered numerous projects while providing tailored skilled manpower solutions that meet client specifications.
-              </p>
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-xl overflow-hidden shadow-xl border-4 border-yellow-500">
+                <Image
+                  src="/hero.webp"
+                  alt="Surendra Vishwakarma - Lead Contractor"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 256px, 320px"
+                  priority
+                />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-4xl font-bold mb-4 text-center">Meet Our Contractor</h2>
+                <h3 className="text-3xl font-semibold mb-6 text-yellow-400 ">Surendra Vishwakarma</h3>
+                <div className="space-y-6">
+                  <p className="text-lg leading-relaxed">
+                    With over <span className="font-semibold text-yellow-400">20 years of experience</span> in the construction field, Surendra Vishwakarma is the driving force behind Suraj Enterprises. His journey includes collaborations with industry leaders such as <span className="font-semibold text-yellow-400">Gina Engineering, Sapoorji Pallonji, and Shriram Company</span>, spanning across major cities including Bangalore, Vijayawada, and Pune.
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    His exceptional leadership and dedication have earned him recognition as the <span className="font-semibold text-yellow-400">Best Contractor</span> on multiple occasions. Throughout his career, he has successfully delivered numerous projects while providing tailored skilled manpower solutions that meet client specifications.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Skilled Workers Section */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Skilled Workforce Card */}
+            <div className="relative bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8 border-2 border-dashed border-gray-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+              <div className="absolute -top-3 left-8 bg-yellow-500 text-gray-800 font-semibold px-4 py-1 rounded-full text-sm">
+                Skilled Workforce
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Our Skilled Workforce</h2>
+              <div className="space-y-4">
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  We maintain a diverse team of highly skilled professionals:
+                </p>
+                <ul className="grid grid-cols-2 gap-4">
+                  {[
+                    { role: 'Foremen', icon: '👷' },
+                    { role: 'Fitters', icon: '🔧' },
+                    { role: 'Helpers', icon: '🛠️' },
+                    { role: 'Barbenders', icon: '🏗️' },
+                    { role: 'Welders', icon: '⚡' },
+                    { role: 'Electricians', icon: '🔌' },
+                    { role: 'Carpenters', icon: '🪚' },
+                    { role: 'Machine workers', icon: '🛠️' },
+                  ].map((worker, index) => (
+                    <li key={index} className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 group">
+                      <span className="text-xl">{worker.icon}</span>
+                      <span className="group-hover:text-gray-800 dark:group-hover:text-white transition-colors duration-300">
+                        {worker.role}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-yellow-500 rounded-bl-lg" />
+            </div>
+
+            {/* Government Registration Card */}
+            <div className="relative bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8 border-2 border-dashed border-gray-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+              <div className="absolute -top-3 left-8 bg-yellow-500 text-gray-800 font-semibold px-4 py-1 rounded-full text-sm">
+                Government Compliance
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Government Registrations & Documents</h2>
+              <div className="space-y-6">
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  We maintain complete compliance with all government regulations and requirements:
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    'Company Registration Certificate',
+                    'GST Registration',
+                    'Labour Card',
+                    'Contractor License',
+                    'Safety Certifications',
+                    'Quality Assurance Documents'
+                  ].map((doc, index) => (
+                    <li key={index} className="flex items-center text-gray-600 dark:text-gray-300 group">
+                      <span className="w-2 h-2 bg-yellow-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-300" />
+                      <span className="group-hover:text-gray-800 dark:group-hover:text-white transition-colors duration-300">
+                        {doc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-yellow-500 rounded-bl-lg" />
             </div>
           </div>
 
