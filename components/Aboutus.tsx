@@ -8,9 +8,9 @@ const ptSans = PT_Sans({
 
 export default function AboutUs() {
   return (
-    <section className={`relative py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 ${ptSans.className}`}>
+    <section className={`relative py-24 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 ${ptSans.className}`}>
       {/* Background Overlay for subtle texture */}
-      <div className="absolute inset-0  opacity-5 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-100/20 via-transparent to-transparent dark:from-blue-900/20 opacity-30 pointer-events-none" />
 
       {/* Container */}
       <div className="max-w-5xl mx-auto">
