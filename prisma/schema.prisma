@@ -23,7 +23,6 @@ model User {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  // Relations
   projectId    String?
   project      Project?      @relation(fields: [projectId], references: [id])
   transactions Transaction[]
@@ -36,8 +35,7 @@ model Project {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relations
-  users        User[] // list of users assigned to this project
+  users        User[]
   transactions Transaction[]
 }
 
@@ -49,7 +47,6 @@ model Transaction {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 
-  // Relations
   userId    String?
   user      User?    @relation(fields: [userId], references: [id])
   projectId String?
