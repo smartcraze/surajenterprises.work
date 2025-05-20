@@ -53,14 +53,14 @@ export function ContactForm() {
             });
 
             if (response.ok) {
-                toast.success('Form submitted successfully!');
-                form.reset(); // Reset the form fields
+                toast.success('Mail successfully sent!');
+                form.reset();
             } else {
-                toast.error('Failed to submit the form.');
+                toast.error('Failed to send mail.');
                 console.error('Server error:', response.statusText);
             }
         } catch (error) {
-            toast.error('An error occurred while submitting the form.');
+            toast.error('An error occurred while sending mail.');
             console.error('Network error:', error);
         }
     };
