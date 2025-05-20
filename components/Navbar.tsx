@@ -19,7 +19,9 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-lg mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
-        <HoveredLink href="/">Home</HoveredLink>
+        <div onMouseEnter={() => setActive("Home")} onMouseLeave={() => setActive(null)}>
+          <HoveredLink href="/">Home</HoveredLink>
+        </div>
         <MenuItem setActive={setActive} active={active} item="Services">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/services/consulting">Consulting</HoveredLink>

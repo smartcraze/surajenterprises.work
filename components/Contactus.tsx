@@ -18,7 +18,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 
-// Define the Zod schema
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
     email: z.string().email({ message: 'Invalid email address' }),
@@ -28,7 +27,6 @@ const formSchema = z.object({
     location: z.string().min(1, { message: 'Location is required' }),
 });
 
-// Infer the form data type from the schema
 type FormData = z.infer<typeof formSchema>;
 
 export function ContactForm() {
@@ -46,7 +44,7 @@ export function ContactForm() {
 
     const onSubmit = async (data: FormData) => {
         try {
-            const response = await fetch('/contact/frm', {
+            const response = await fetch('/api/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
