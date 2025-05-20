@@ -2,6 +2,7 @@ import { NextResponse ,NextRequest} from 'next/server';
 import prisma from '@/lib/db';
 import z from 'zod';
 import jwt from 'jsonwebtoken';
+
 enum Role {
   FITTER = 'FITTER',
   FOREMAN = 'FOREMAN',
