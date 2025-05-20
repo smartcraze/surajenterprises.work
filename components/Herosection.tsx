@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const phrases = [
   "Building Your Vision with Precision",
@@ -26,6 +27,8 @@ export default function HeroSection() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const notify = () => toast.success("20+ Years of Trusted Civil Contracting Experience");
 
   return (
     <section className="relative h-screen w-full overflow-hidden text-black dark:text-white">
@@ -65,28 +68,43 @@ export default function HeroSection() {
             )}
           </AnimatePresence>
         </div>
+
         <p className="text-lg md:text-2xl mb-6 drop-shadow-md text-yellow-500 bg-black/50 p-2 rounded-lg font-sans">
           High-quality construction solutions tailored to your needs.
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center">
           <Link href="/get-quote" >
-            <Button  className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-3 rounded-xl shadow-lg transition">
+            <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-3 rounded-xl shadow-lg transition">
               Get a Quote
             </Button>
           </Link>
 
           <Link href="/contact">
-            <Button  className="bg-white/80 text-black hover:bg-white hover:shadow-xl font-medium px-6 py-3 rounded-xl backdrop-blur-md transition border border-white/40">
+            <Button className="bg-white/80 text-black hover:bg-white hover:shadow-xl font-medium px-6 py-3 rounded-xl backdrop-blur-md transition border border-white/40">
               Contact Us
             </Button>
           </Link>
 
           <Link href="/projects">
-            <Button  className="bg-gradient-to-r from-transparent to-white/10 text-white hover:from-white/20 hover:to-white/30 border border-white/30 px-6 py-3 rounded-xl transition backdrop-blur-md font-medium">
+            <Button className="bg-gradient-to-r from-transparent to-white/10 text-white hover:from-white/20 hover:to-white/30 border border-white/30 px-6 py-3 rounded-xl transition backdrop-blur-md font-medium">
               See Projects
             </Button>
           </Link>
+        </div>
+
+        {/* Experience Button - Positioned below main buttons with different styling */}
+        <div className="mt-8">
+          <Button
+            onClick={notify}
+            className="bg-gradient-to-r from-amber-400 to-yellow-600 hover:from-amber-500 hover:to-yellow-700 text-white font-bold px-8 py-4 rounded-full shadow-xl transition-all transform hover:scale-105 border-2 border-yellow-300/30"
+          >
+            <span className="flex items-center gap-2">
+              <span className="text-xs font-normal">Our</span>
+              <span>Experience</span>
+              <span className="text-xs font-normal">→</span>
+            </span>
+          </Button>
         </div>
       </div>
     </section>
