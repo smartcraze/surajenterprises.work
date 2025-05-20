@@ -1,49 +1,57 @@
+"use client";
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react"; // optional: lucide icons
-
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
+import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
+import { cn } from "@/lib/utils";
+import { ModeToggle } from "./ThemeToggler";
+export function NavbarDemo() {
   return (
-    <nav className="bg-white shadow-lg fixed w-full z-50">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <span className="font-bold text-xl text-blue-600">Suraj.dev</span>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 focus:outline-none"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {/* Desktop menu */}
-          <div className="hidden md:flex space-x-6">
-            <a href="#home" className="text-gray-700 hover:text-blue-600">Home</a>
-            <a href="#about" className="text-gray-700 hover:text-blue-600">About</a>
-            <a href="#projects" className="text-gray-700 hover:text-blue-600">Projects</a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600">Contact</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden px-4 pb-4 bg-white shadow-md">
-          <a href="#home" className="block py-2 text-gray-700 hover:text-blue-600">Home</a>
-          <a href="#about" className="block py-2 text-gray-700 hover:text-blue-600">About</a>
-          <a href="#projects" className="block py-2 text-gray-700 hover:text-blue-600">Projects</a>
-          <a href="#contact" className="block py-2 text-gray-700 hover:text-blue-600">Contact</a>
-        </div>
-      )}
-    </nav>
+    <div className="relative w-full flex items-center justify-center">
+      <Navbar className="top-4" />
+    </div>
   );
 }
 
-export default Navbar;
+function Navbar({ className }: { className?: string }) {
+  const [active, setActive] = useState<string | null>(null);
+  return (
+    <div
+      className={cn("fixed top-10 inset-x-0 max-w-lg mx-auto z-50", className)}
+    >
+      <Menu setActive={setActive}>
+        <MenuItem setActive={setActive} active={active} item="Services">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/web-dev">Web Development</HoveredLink>
+            <HoveredLink href="/interface-design">Interface Design</HoveredLink>
+            <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
+            <HoveredLink href="/branding">Branding</HoveredLink>
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Products">
+          <div className="  text-sm grid grid-cols-2 gap-10 p-4">
+            <ProductItem
+              title="Algochurn"
+              href="https://algochurn.com"
+              src="https://assets.aceternity.com/demos/algochurn.webp"
+              description="Prepare for tech interviews like never before."
+            />
+            <ProductItem
+              title="Tailwind Master Kit"
+              href="https://tailwindmasterkit.com"
+              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
+              description="Production ready Tailwind css components for your next project"
+            />
+            
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Profile">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/login">Login</HoveredLink>
+            <HoveredLink href="/signup">Signup</HoveredLink>
+            <HoveredLink href="/profile">Profile</HoveredLink>
+          </div>
+        </MenuItem>
+        <ModeToggle />
+      </Menu>
+    </div>
+  );
+}
