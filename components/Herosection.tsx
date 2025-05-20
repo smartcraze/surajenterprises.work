@@ -22,7 +22,7 @@ export default function HeroSection() {
         setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
         setIsTyping(true);
       }, 500);
-    }, 7000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
