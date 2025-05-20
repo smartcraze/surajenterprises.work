@@ -1,21 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import React from 'react';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
-// Import PDF components directly
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-
-// Dynamic import for PDFViewer
-const PDFViewer = dynamic(
-    () => import('@react-pdf/renderer').then(mod => mod.PDFViewer),
-    { ssr: false }
-);
-
-const PDFDownloadLink = dynamic(
-    () => import('@react-pdf/renderer').then(mod => mod.PDFDownloadLink),
-    { ssr: false }
-);
+// Add type definition for jsPDF with autoTable
+declare module 'jspdf' {
+    interface jsPDF {
+        autoTable: (options: any) => jsPDF;
+        lastAutoTable: {
+            finalY: number;
+        };
+    }
+}
 
 const quotationData = [
     { id: 1, item: 'Shuttering for Footing', unit: 'Per Sq. Mtr.', rate: '320.00' },
@@ -51,138 +48,81 @@ const terms = [
     'If any rectification charge will be paid by company.',
 ];
 
-// PDF Document Component
-const QuotationPDF = () => (
-    <Document>
-        <Page size="A4" style={styles.page}>
-            <View style={styles.header}>
-                <Text style={styles.title}>QUOTATION</Text>
-            </View>
-
-            <View style={styles.table}>
-                <View style={styles.tableRow}>
-                    <Text style={[styles.tableCell, styles.tableHeader]}>Sl. No.</Text>
-                    <Text style={[styles.tableCell, styles.tableHeader]}>Particulars</Text>
-                    <Text style={[styles.tableCell, styles.tableHeader]}>Unit</Text>
-                    <Text style={[styles.tableCell, styles.tableHeader]}>Rate</Text>
-                </View>
-
-                {quotationData.map((item) => (
-                    <View key={item.id} style={styles.tableRow}>
-                        <Text style={styles.tableCell}>{item.id}</Text>
-                        <Text style={styles.tableCell}>{item.item}</Text>
-                        <Text style={styles.tableCell}>{item.unit}</Text>
-                        <Text style={styles.tableCell}>{item.rate}</Text>
-                    </View>
-                ))}
-            </View>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Terms & Conditions:</Text>
-                {terms.map((term, idx) => (
-                    <Text key={idx} style={styles.term}>• {term}</Text>
-                ))}
-            </View>
-
-            <View style={styles.footer}>
-                <View style={styles.footerColumn}>
-                    <Text style={styles.footerText}>GSTIN: 29BVKPS7648A1ZL</Text>
-                    <Text style={styles.footerText}>PAN No: BVKPS7648A</Text>
-                </View>
-                <View style={styles.footerColumn}>
-                    <Text style={styles.footerText}>Signature of Engineer/Owner</Text>
-                    <Text style={styles.footerText}>Contractor Sign. Agreed to Execute</Text>
-                </View>
-            </View>
-        </Page>
-    </Document>
-);
-
-// PDF Styles
-const styles = StyleSheet.create({
-    page: {
-        padding: 30,
-        fontSize: 12,
-    },
-    header: {
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    table: {
-        display: 'flex',
-        width: 'auto',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: '#bfbfbf',
-        marginBottom: 20,
-    },
-    tableRow: {
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#bfbfbf',
-    },
-    tableHeader: {
-        backgroundColor: '#f0f0f0',
-        fontWeight: 'bold',
-    },
-    tableCell: {
-        padding: 5,
-        flex: 1,
-        borderRightWidth: 1,
-        borderRightColor: '#bfbfbf',
-    },
-    section: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
-    sectionTitle: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    term: {
-        marginBottom: 5,
-    },
-    footer: {
-        marginTop: 30,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    footerColumn: {
-        flex: 1,
-    },
-    footerText: {
-        marginBottom: 5,
-    },
-});
-
 export function QuotationCard() {
-    const [showPDF, setShowPDF] = useState(false);
+    const generatePDF = () => {
+        const doc = new jsPDF();
+
+        // Add company name
+        doc.setFontSize(24);
+        doc.setFont('helvetica', 'bold');
+        doc.text('SURAJ ENTERPRISES', 105, 15, { align: 'center' });
+
+        // Add current date
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Date: ${formattedDate}`, 190, 15, { align: 'right' });
+
+        // Add title
+        doc.setFontSize(20);
+        doc.setFont('helvetica', 'bold');
+        doc.text('QUOTATION', 105, 25, { align: 'center' });
+
+        // Add table
+        autoTable(doc, {
+            startY: 35,
+            head: [['Sl. No.', 'Particulars', 'Unit', 'Rate']],
+            body: quotationData.map(item => [item.id, item.item, item.unit, item.rate]),
+            theme: 'grid',
+            headStyles: { fillColor: [41, 128, 185], textColor: 255 },
+            styles: { fontSize: 10 },
+            columnStyles: {
+                0: { cellWidth: 20 },
+                1: { cellWidth: 100 },
+                2: { cellWidth: 40 },
+                3: { cellWidth: 30 }
+            }
+        });
+
+        // Add terms and conditions
+        const finalY = (doc as any).lastAutoTable.finalY + 10;
+        doc.setFontSize(12);
+        doc.text('Terms & Conditions:', 14, finalY);
+
+        doc.setFontSize(10);
+        terms.forEach((term, index) => {
+            doc.text(`• ${term}`, 14, finalY + 10 + (index * 5));
+        });
+
+        // Add footer
+        const footerY = finalY + (terms.length * 5) + 20;
+        doc.setFontSize(10);
+        doc.text('GSTIN: 29BVKPS7648A1ZL', 14, footerY);
+        doc.text('PAN No: BVKPS7648A', 14, footerY + 5);
+
+        doc.text('Signature of Engineer/Owner', 120, footerY);
+        doc.text('Contractor Sign. Agreed to Execute', 120, footerY + 5);
+
+        // Save the PDF
+        doc.save('quotation.pdf');
+    };
 
     return (
         <div className="max-w-6xl mx-auto p-4 bg-white dark:bg-gray-800 shadow-md rounded-lg mt-24 dark:shadow-gray-700">
             <div className="flex justify-between items-center mb-4">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white">QUOTATION</h1>
                 <button
-                    onClick={() => setShowPDF(!showPDF)}
+                    onClick={generatePDF}
                     className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
                 >
-                    {showPDF ? 'Hide PDF' : 'Show PDF'}
+                    Download PDF
                 </button>
             </div>
-
-            {showPDF && (
-                <div className="h-[800px] w-full mb-4">
-                    <PDFViewer width="100%" height="100%">
-                        <QuotationPDF />
-                    </PDFViewer>
-                </div>
-            )}
 
             <div>
                 <table className="w-full border-collapse border border-gray-300 dark:border-gray-600 text-sm">
