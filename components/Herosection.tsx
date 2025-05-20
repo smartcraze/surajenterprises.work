@@ -1,7 +1,32 @@
+"use client"
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+const phrases = [
+  "Building Your Vision with Precision",
+  "Crafting Excellence in Construction",
+  "Delivering Quality & Reliability",
+  "Your Trusted Construction Partner"
+];
 
 export default function HeroSection() {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTyping(false);
+      setTimeout(() => {
+        setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+        setIsTyping(true);
+      }, 500);
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative h-screen w-full overflow-hidden text-black dark:text-white">
       {/* Background Image */}
@@ -24,9 +49,22 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4  text-white drop-shadow-2xl text-shadow-black  text-shadow-md ">
-          Building Your Vision with Precision
-        </h1>
+        <div className="h-32 flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            {isTyping && (
+              <motion.h1
+                key={currentPhraseIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-2xl text-shadow-black text-shadow-md"
+              >
+                {phrases[currentPhraseIndex]}
+              </motion.h1>
+            )}
+          </AnimatePresence>
+        </div>
         <p className="text-lg md:text-2xl mb-6 drop-shadow-md text-yellow-500 bg-black/50 p-2 rounded-lg font-sans">
           High-quality construction solutions tailored to your needs.
         </p>
