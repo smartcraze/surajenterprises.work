@@ -18,9 +18,9 @@ function Footer() {
                     <h2 className="text-white text-lg font-semibold mb-4">Quick Links</h2>
                     <ul className="space-y-2">
                         <li>
-                            <Link href="/">
+                            <Link href="/safety-policy">
                                 <span className="hover:text-yellow-400 transition-colors duration-300 cursor-pointer">
-                                    Home
+                                    Safety Policy
                                 </span>
                             </Link>
                         </li>

@@ -6,6 +6,7 @@ import { NavbarDemo } from "@/components/Navbar";
 import { Inter } from "next/font/google";
 
 import { PT_Sans } from "next/font/google";
+import Footer from "@/components/Footer";
 
 const ptSans = PT_Sans({
   variable: "--font-pt-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             <NavbarDemo />
             {children}
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
