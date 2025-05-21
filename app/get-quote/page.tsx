@@ -52,35 +52,61 @@ export function QuotationCard() {
     const generatePDF = () => {
         const doc = new jsPDF();
 
-        // Add company name
-        doc.setFontSize(24);
+        // Top header: GSTIN & PAN (left), Mob (right)
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
         doc.setFont('helvetica', 'bold');
-        doc.text('SURAJ ENTERPRISES', 105, 15, { align: 'center' });
+        doc.text('GSTIN : 29BVKPS7648A1ZL   |   PAN No : BVKPS7648A', 14, 12);
+        doc.text('Mob : 9880494435, 9880826136', 200, 12, { align: 'right' });
 
-        // Add current date
+        // Company Name (Red, Large, minimal margin)
+        doc.setFontSize(25);
+        doc.setTextColor(220, 20, 60); // Red
+        doc.setFont('helvetica', 'bold');
+        doc.text('SURENDRA VISHWAKARMA', 105, 24, { align: 'center' });
+
+        // Sub-Contractor
+        doc.setFontSize(14);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Sub-Contractor', 105, 32, { align: 'center' });
+
+        // Address and Email (centered, compact)
+        doc.setFontSize(9.5);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Address : No. 67-A, Hurka, Manjhiaon, Garhwa, Jharkhand – 822120,', 105, 38, { align: 'center' });
+        doc.text("#2402, 1st Floor, 3rd Phase, 'B' Sector, Yelahanka New Town, Bangalore – 560064.", 105, 43, { align: 'center' });
+        doc.text('Email : ksurendra1201@gmail.com', 105, 48, { align: 'center' });
+
+        // Horizontal line
+        doc.setDrawColor(41, 128, 185);
+        doc.setLineWidth(0.7);
+        doc.line(10, 52, 200, 52);
+
+        // Date (right, just below line)
         const today = new Date();
         const formattedDate = today.toLocaleDateString('en-IN', {
-            day: 'numeric',
-            month: 'long',
+            day: '2-digit',
+            month: '2-digit',
             year: 'numeric'
         });
         doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        doc.text(`Date: ${formattedDate}`, 190, 15, { align: 'right' });
-
-        // Add title
-        doc.setFontSize(20);
         doc.setFont('helvetica', 'bold');
-        doc.text('QUOTATION', 105, 25, { align: 'center' });
+        doc.text(`Date : ${formattedDate}`, 200, 58, { align: 'right' });
 
-        // Add table
+        // Quotation Title
+        doc.setFontSize(14);
+        doc.setFont('helvetica', 'bold');
+        doc.text('QUOTATION', 105, 65, { align: 'center' });
+
+        // Table (startY just after title)
         autoTable(doc, {
-            startY: 35,
+            startY: 70,
             head: [['Sl. No.', 'Particulars', 'Unit', 'Rate']],
             body: quotationData.map(item => [item.id, item.item, item.unit, item.rate]),
             theme: 'grid',
-            headStyles: { fillColor: [41, 128, 185], textColor: 255 },
-            styles: { fontSize: 10 },
+            headStyles: { fillColor: [41, 128, 185], textColor: 255, fontStyle: 'bold' },
+            styles: { fontSize: 9 },
             columnStyles: {
                 0: { cellWidth: 20 },
                 1: { cellWidth: 100 },
@@ -89,22 +115,24 @@ export function QuotationCard() {
             }
         });
 
-        // Add terms and conditions
-        const finalY = (doc as any).lastAutoTable.finalY + 10;
-        doc.setFontSize(12);
-        doc.text('Terms & Conditions:', 14, finalY);
-
+        // Terms & Conditions (compact)
+        const finalY = (doc).lastAutoTable.finalY + 8;
         doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Terms & Conditions:', 14, finalY);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
         terms.forEach((term, index) => {
-            doc.text(`• ${term}`, 14, finalY + 10 + (index * 5));
+            doc.text(`• ${term}`, 14, finalY + 6 + (index * 4));
         });
 
-        // Add footer
-        const footerY = finalY + (terms.length * 5) + 20;
-        doc.setFontSize(10);
+        // Footer: GSTIN, PAN (left), Signature lines (right)
+        const pageHeight = doc.internal.pageSize.height;
+        const footerY = pageHeight - 25;
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
         doc.text('GSTIN: 29BVKPS7648A1ZL', 14, footerY);
         doc.text('PAN No: BVKPS7648A', 14, footerY + 5);
-
         doc.text('Signature of Engineer/Owner', 120, footerY);
         doc.text('Contractor Sign. Agreed to Execute', 120, footerY + 5);
 

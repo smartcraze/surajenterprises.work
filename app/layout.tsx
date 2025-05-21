@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/context";
 import { NavbarDemo } from "@/components/Navbar";
-import { Inter } from "next/font/google";
 
 import { PT_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
@@ -26,8 +25,10 @@ const geistMono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-  title: "Suraj's Construction",
+  title: "SURAJ ENTERPRISES",
   description: "Suraj's Construction || suraj Enterprises",
+
+  keywords: "Suraj's Construction, suraj Enterprises, Construction, Building, Construction Company, Construction Services, Construction Company in India, Construction Company in banglore , contractor in banglore, contractor in india, construction services in banglore, construction services in india, construction company in banglore, construction company in india, construction contractor in banglore, construction contractor in india, construction services in banglore, construction services in india, construction company in banglore, construction company in india, construction contractor in banglore, construction contractor in india",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
