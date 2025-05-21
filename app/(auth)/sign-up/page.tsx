@@ -108,7 +108,7 @@ export default function SignUpPage() {
             }
 
             toast.success('Account created successfully!')
-            // router.push('/sign-in')
+            router.push('/login')
         } catch (error) {
             toast.error(error instanceof Error ? error.message : 'Failed to create account')
         } finally {
