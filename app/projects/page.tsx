@@ -1,6 +1,8 @@
 "use client";
 import { Cover } from "@/components/ui/cover";
+import { Project } from "@/generated/prisma";
 import { motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ProjectSection() {
@@ -76,7 +78,7 @@ export default function ProjectSection() {
                         className="relative z-10 mt-20 rounded-3xl border border-white/20 bg-white/10 p-4 shadow-md backdrop-blur-sm"
                     >
                         <div className="w-full overflow-hidden rounded-xl border border-white/20">
-                            <img
+                            <Image
                                 src="/schema.png"
                                 alt="Landing page preview"
                                 className="aspect-[16/9] h-auto w-full object-cover"
@@ -85,8 +87,46 @@ export default function ProjectSection() {
                             />
                         </div>
                     </motion.div>
+                    <ProjectCard src="/hero.webp" alt="umiya hebal" />
                 </div>
             </div>
         </div>
+    );
+}
+
+function ProjectCard({ src, alt = "Project Image" }: { src: string, alt?: string }) {
+    return (
+        <motion.div
+            initial={{
+                opacity: 0,
+                y: 10,
+            }}
+            animate={{
+                opacity: 1,
+                y: 0,
+            }}
+            transition={{
+                duration: 0.3,
+                delay: 1.2,
+            }}
+            className="relative z-10 mt-20 rounded-3xl border border-white/20 bg-white/10 p-4 shadow-md backdrop-blur-sm"
+        >
+            <div className="relative w-full overflow-hidden rounded-xl border border-white/20">
+                <Image
+                    src={src}
+                    alt={alt}
+                    className="aspect-[16/9] h-auto w-full object-cover"
+                    height={1000}
+                    width={1000}
+                />
+                <div className="absolute top-4 right-4">
+                    <div className="rounded-full bg-yellow-500 px-3 py-1 md:px-6 md:py-2 shadow-lg">
+                        <h1 className="text-sm md:text-xl font-semibold text-white">
+                            {alt}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
     );
 }

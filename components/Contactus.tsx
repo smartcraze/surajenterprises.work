@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 
 import {
     Form,
@@ -30,6 +31,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export function ContactForm() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -43,6 +45,7 @@ export function ContactForm() {
     });
 
     const onSubmit = async (data: FormData) => {
+        setIsSubmitting(true);
         try {
             const response = await fetch('/api/send', {
                 method: 'POST',
@@ -62,6 +65,8 @@ export function ContactForm() {
         } catch (error) {
             toast.error('An error occurred while sending mail.');
             console.error('Network error:', error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -185,9 +190,10 @@ export function ContactForm() {
                         <div className="flex justify-center">
                             <Button
                                 type="submit"
-                                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-semibold py-3 px-8 w-auto transition-colors duration-200"
+                                disabled={isSubmitting}
+                                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-semibold py-3 px-8 w-auto transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Submit
+                                {isSubmitting ? 'Sending...' : 'Submit'}
                             </Button>
                         </div>
                     </form>
