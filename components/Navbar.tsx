@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu"
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./ThemeToggler";
+import Link from "next/link";
+import Image from "next/image";
 
 export function NavbarDemo() {
   return (
@@ -19,9 +21,16 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-lg mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
-        <div onMouseEnter={() => setActive("Home")} onMouseLeave={() => setActive(null)}>
-          <HoveredLink href="/">Home</HoveredLink>
+        <div className="flex items-center justify-center">
+          <Image src="/crane.gif"
+            alt="crane"
+            width={100}
+            height={100}
+            className="w-10 h-10 rounded-full"
+          />
         </div>
+
+        <Link href="/" className="text-black dark:text-neutral-200 hover:text-black">Home</Link>
         <MenuItem setActive={setActive} active={active} item="Services">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/services/consulting">Consulting</HoveredLink>
@@ -36,7 +45,9 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/dashboard">Dashboard</HoveredLink>
           </div>
         </MenuItem>
-        <ModeToggle />
+        <div className="px-4">
+          <ModeToggle />
+        </div>
       </Menu>
     </div>
   );

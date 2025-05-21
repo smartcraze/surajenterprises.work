@@ -1,5 +1,6 @@
 import { PT_Sans } from 'next/font/google';
 import Image from 'next/image';
+import { FaHardHat, FaWrench, FaTools, FaIndustry, FaBolt, FaPlug, FaHammer, FaCogs } from 'react-icons/fa';
 
 const ptSans = PT_Sans({
   weight: ['400', '700'],
@@ -79,14 +80,14 @@ export default function AboutUs() {
                 </p>
                 <ul className="grid grid-cols-2 gap-4">
                   {[
-                    { role: 'Foremen', icon: '👷' },
-                    { role: 'Fitters', icon: '🔧' },
-                    { role: 'Helpers', icon: '🛠️' },
-                    { role: 'Barbenders', icon: '🏗️' },
-                    { role: 'Welders', icon: '⚡' },
-                    { role: 'Electricians', icon: '🔌' },
-                    { role: 'Carpenters', icon: '🪚' },
-                    { role: 'Machine workers', icon: '🛠️' },
+                    { role: 'Foremen', icon: <FaHardHat className="text-xl" /> },
+                    { role: 'Fitters', icon: <FaWrench className="text-xl" /> },
+                    { role: 'Helpers', icon: <FaTools className="text-xl" /> },
+                    { role: 'Barbenders', icon: <FaIndustry className="text-xl" /> },
+                    { role: 'Welders', icon: <FaBolt className="text-xl" /> },
+                    { role: 'Electricians', icon: <FaPlug className="text-xl" /> },
+                    { role: 'Carpenters', icon: <FaHammer className="text-xl" /> },
+                    { role: 'Machine workers', icon: <FaCogs className="text-xl" /> },
                   ].map((worker, index) => (
                     <li key={index} className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 group">
                       <span className="text-xl">{worker.icon}</span>
