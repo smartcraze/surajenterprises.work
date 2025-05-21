@@ -5,7 +5,6 @@ import { z } from "zod"
 import { useState } from "react"
 import toast, { Toaster } from "react-hot-toast"
 import { useRouter } from "next/navigation"
-
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -85,9 +84,7 @@ export default function SignInPage() {
             }
             toast.success("Logged in successfully!")
 
-            localStorage.setItem("token", response.token)
-
-            sessionStorage.setItem("user", JSON.stringify(response.user))
+            
             router.push("/dashboard")
         } catch (err) {
             toast.error("Failed to log in")
