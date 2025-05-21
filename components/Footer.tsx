@@ -39,7 +39,7 @@ function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/contact">
+                            <Link href="#contact">
                                 <span className="hover:text-yellow-400 transition-colors duration-300 cursor-pointer">
                                     Contact
                                 </span>

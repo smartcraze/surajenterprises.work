@@ -2,9 +2,9 @@ import AboutUs from "@/components/Aboutus";
 import HeroSection from "@/components/Herosection";
 import Footer from "@/components/Footer";
 import { Toaster } from 'react-hot-toast';
-import ManPower from "@/components/ManPower";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import { ContactForm } from "@/components/Contactus";
+import { Testomonials } from "@/components/Testomonials";
 
 function Home() {
   return (
@@ -14,8 +14,7 @@ function Home() {
       <AboutUs />
       <WhyChooseUs />
       <ContactForm />
-      <Footer />
-
+      <Testomonials />
     </div>
   );
 }
