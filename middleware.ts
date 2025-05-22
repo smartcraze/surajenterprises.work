@@ -16,7 +16,6 @@ export async function middleware(req: NextRequest) {
 
   if (!isProtectedRoute) return NextResponse.next();
   if (!token) return NextResponse.redirect(new URL('/login', req.url));
-
   try {
     const { payload } = await jwtVerify(token, getJwtSecretKey());
 

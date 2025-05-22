@@ -1,13 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
-import jwt from 'jsonwebtoken';
+import { NextRequest, NextResponse } from 'next/server';
+
 
 export async function GET(req: NextRequest) {
-    const token = req.headers.get('authorization')?.split(' ')[1];
-    if(!token) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  try {
+    const id = req.headers.get('x-user-id');
+    if (!id) {
+      return NextResponse.json({ error: 'Unauthorized: No user ID provided' }, { status: 401 });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
-    const user = await prisma.user.findUnique({ where: { id: decoded.id  } });
+    const user = await prisma.user.findUnique({ where: { id: id } });
     return NextResponse.json({ user }, { status: 200 });
+  } catch (error) {
+    console.error('Error in /api/auth/me:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
 }

@@ -15,6 +15,7 @@ function Home() {
       <WhyChooseUs />
       <ContactForm />
       <Testomonials />
+      <Footer />
     </div>
   );
 }
