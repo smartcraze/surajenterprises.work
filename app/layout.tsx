@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/context";
 import { NavbarDemo } from "@/components/Navbar";
 
 import { PT_Sans } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const ptSans = PT_Sans({
   variable: "--font-pt-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <Toaster />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -46,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             <NavbarDemo />
             {children}
-            {/* <Footer /> */}
+
           </ThemeProvider>
         </body>
       </html>

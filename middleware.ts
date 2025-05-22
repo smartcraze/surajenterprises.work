@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify, type JWTPayload } from 'jose';
 
-const protectedRoutes = ['/dashboard'];
+const protectedRoutes = ['/dashboard', '/admin'];
 
 function getJwtSecretKey(): Uint8Array {
   const secret = process.env.JWT_SECRET;
@@ -33,5 +33,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/dashboard/:path*', '/admin/:path*'],
 };

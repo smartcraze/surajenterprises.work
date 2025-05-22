@@ -82,16 +82,23 @@ export default function SignInPage() {
                 toast.error(response.error || "Something went wrong")
                 return
             }
+
             toast.success("Logged in successfully!")
 
-            
-            router.push("/dashboard")
+            // ✅ Role-based redirect
+            if (userRole === "ADMIN") {
+                router.push("/admin")
+            } else {
+                router.push("/dashboard")
+            }
+
         } catch (err) {
             toast.error("Failed to log in")
         } finally {
             setIsSubmitting(false)
         }
     }
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black px-4 py-6">
