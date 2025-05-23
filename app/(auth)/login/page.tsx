@@ -84,14 +84,11 @@ export default function SignInPage() {
             }
 
             toast.success("Logged in successfully!")
-
-            // ✅ Role-based redirect
             if (userRole === "ADMIN") {
-                router.push("/admin")
+                router.push("/admin");
             } else {
-                router.push("/dashboard")
+                router.push("/dashboard");
             }
-
         } catch (err) {
             toast.error("Failed to log in")
         } finally {

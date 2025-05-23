@@ -24,3 +24,4 @@ export async function sendWhatsAppMessage(toPhoneNumber: string, message: string
 
   return await response.json()
 }
+
