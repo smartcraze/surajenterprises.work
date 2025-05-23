@@ -1,6 +1,7 @@
 
 import { CreateProjectsForm } from "@/components/CreateProjectsForm";
 import ListProjects from "@/components/ListProjects";
+import { SearchInput } from "@/components/Searchbar";
 
 export default function AdminPage() {
         console.log("from admin page");
@@ -8,8 +9,10 @@ export default function AdminPage() {
     return (
         <div>
             <h1>Admin Page</h1>
+            
             <CreateProjectsForm />
             <ListProjects />
+            <SearchInput />
             {/* <CreateLabourAccountForm /> */}
             {/* <GenerateReports /> */}
             {/* <GeneratePDFs /> */}

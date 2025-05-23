@@ -3,9 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/context";
 import { NavbarDemo } from "@/components/Navbar";
-
 import { PT_Sans } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import { SearchProvider } from "@/hooks/useSearch";
 
 const ptSans = PT_Sans({
   variable: "--font-pt-sans",
@@ -46,9 +46,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             enableSystem
             disableTransitionOnChange
           >
+            <SearchProvider>
+
             <NavbarDemo />
             {children}
 
+            </SearchProvider>
           </ThemeProvider>
         </body>
       </html>

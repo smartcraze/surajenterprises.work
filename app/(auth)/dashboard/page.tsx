@@ -1,4 +1,5 @@
 
+import Logout from '@/components/Logout';
 import {
     Card,
     CardContent,
@@ -40,6 +41,10 @@ export default async function Dashboard() {
                             Welcome back, {userData?.name || '...'}
                         </CardDescription>
                     </CardHeader>
+                    <div className="flex justify-end p-4">
+                        <Logout />
+                    </div>
+                    
 
                     <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-base text-gray-700 dark:text-gray-300">
                         {userData ? (
