@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     });
     return NextResponse.json(users);
 }
+
 export async function PUT(request: NextRequest) {
     const id = request.nextUrl.searchParams.get('id');
     const { rate, phone } = await request.json();

@@ -33,9 +33,13 @@ export default async function ListProjects() {
               <Button variant="outline" className="w-full">View Labours</Button>
             </Link>
 
-            <Link href={`/projects/${project.id}/edit`}>
+            <Link href={`/project-site/${project.id}/edit`}>
               <Button className="w-full">Edit Project</Button>
             </Link>
+            <Link href={`/project-site/${project.id}/add`}>
+              <Button className="w-full">Add Users</Button>
+            </Link>
+
           </div>
         </Card>
       ))}
