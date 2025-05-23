@@ -6,6 +6,7 @@ interface LabourPageProps {
 
 export default function LabourPage({ params }: LabourPageProps) {
   const projectId = params?.id || 'No ID provided';
+  console.log("Project ID from URL:", projectId);
 
   return (
     <div className="container mx-auto p-4">
