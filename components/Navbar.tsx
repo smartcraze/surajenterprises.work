@@ -44,6 +44,7 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/dashboard">Dashboard</HoveredLink>
             <HoveredLink href="/login">Login</HoveredLink>
             <HoveredLink href="/sign-up">Sign Up</HoveredLink>
+            <HoveredLink href="/admin">Admin</HoveredLink>
           </div>
         </MenuItem>
         <div className="px-4">
