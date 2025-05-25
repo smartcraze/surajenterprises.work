@@ -1,18 +1,8 @@
 'use client';
 
 import React from 'react';
-import { jsPDF } from 'jspdf'
-import { autoTable } from 'jspdf-autotable'
 
-// TypeScript declaration to extend jsPDF with autoTable types
-declare module 'jspdf' {
-  interface jsPDF {
-    autoTable: (options: any) => jsPDF;
-    lastAutoTable: {
-      finalY: number;
-    };
-  }
-}
+
 
 const quotationData = [
   { id: 1, item: 'Shuttering for Footing', unit: 'Per Sq. Mtr.', rate: '320.00' },
@@ -49,7 +39,9 @@ const terms = [
 ];
 
 export function QuotationCard() {
-  const generatePDF = () => {
+  const generatePDF = async () => {
+    const { jsPDF } = await import('jspdf');
+    const autoTable = (await import('jspdf-autotable')).default;
     const doc = new jsPDF();
 
     // Header - GSTIN, PAN, Mobile

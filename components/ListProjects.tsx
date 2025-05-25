@@ -1,21 +1,17 @@
 import { Card } from "./ui/card"
 import { Button } from "./ui/button"
 import Link from "next/link"
-
+import prisma from "@/lib/db"
 export default async function ListProjects() {
-  const res = await fetch(`http://localhost:3000/api/projects`, {
-    next: { revalidate: 60 },
-  })
+  const projects = await prisma.project.findMany()
 
-  if (!res.ok) {
+  if (!projects) {
     throw new Error("Failed to fetch projects")
   }
 
-  const data = await res.json()
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-      {data.map((project: any) => (
+      {projects.map((project: any) => (
         <Card
           key={project.id}
           className="p-5 rounded-2xl shadow-lg border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex flex-col justify-between min-h-[240px]"
