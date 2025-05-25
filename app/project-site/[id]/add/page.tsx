@@ -1,32 +1,25 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
-import {useParams, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-interface UserParams {
-  params: {
-    projectId: string;
-  };
-}
-
-export default  function AddUsersToProject() {
+export default function AddUsersToProject() {
   const router = useRouter();
   const params = useParams();
   const projectId = params?.id as string;
-  
-
-  console.log("Project ID from URL:", projectId);
 
   const [users, setUsers] = useState<any[]>([]);
   const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     async function fetchUsers() {
-      const res = await fetch("/api/user/all");
-      if (res.ok) {
+      try {
+        const res = await fetch("/api/user/all");
+        if (!res.ok) throw new Error("Failed to fetch users");
         const data = await res.json();
         setUsers(data);
-      } else {
+      } catch (error) {
         toast.error("Failed to fetch users");
       }
     }
@@ -57,65 +50,88 @@ export default  function AddUsersToProject() {
       userIds: Array.from(selectedUsers),
     };
 
-    // Debug log the payload just before sending
-    console.log("Submitting payload:", payload);
-
     toast.loading("Adding users to project...");
 
-    const res = await fetch(`/api/projects/add-users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await fetch(`/api/projects/add-users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    toast.dismiss();
+      toast.dismiss();
 
-    if (res.ok) {
-      toast.success("Users added successfully!");
-      
-    } else {
-      const errorData = await res.json();
-      if (errorData.error) {
-        toast.error(errorData.error);
+      if (res.ok) {
+        toast.success("Users added successfully!");
+        setSelectedUsers(new Set()); // Clear selection on success
+        router.push(`/projects/${projectId}`); // Redirect after adding users
       } else {
-        toast.error("An unknown error occurred");
+        const errorData = await res.json();
+        toast.error(errorData.error || "An unknown error occurred");
       }
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Network error. Please try again.");
     }
   }
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Add Users to Project</h1>
-      <table className="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            <th className="border border-gray-300 p-2">Select</th>
-            <th className="border border-gray-300 p-2">Name</th>
-            <th className="border border-gray-300 p-2">Phone</th>
-            <th className="border border-gray-300 p-2">Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id} className="text-center border border-gray-300">
-              <td className="border border-gray-300 p-2">
-                <input
-                  type="checkbox"
-                  checked={selectedUsers.has(user.id)}
-                  onChange={() => toggleUserSelection(user.id)}
-                />
-              </td>
-              <td className="border border-gray-300 p-2">{user.name}</td>
-              <td className="border border-gray-300 p-2">{user.phone}</td>
-              <td className="border border-gray-300 p-2">{user.role}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-zinc-900 rounded-2xl shadow-md">
+      <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+        Add Users to Project
+      </h1>
+
+      {users.length === 0 ? (
+        <p className="text-center text-gray-500 dark:text-gray-400">Loading users...</p>
+      ) : (
+        <div className="overflow-x-auto rounded-lg border border-gray-300 dark:border-zinc-700">
+          <table className="w-full table-auto border-collapse text-gray-900 dark:text-gray-100">
+            <thead className="bg-gray-100 dark:bg-zinc-800">
+              <tr>
+                <th className="p-3 border-b border-gray-300 dark:border-zinc-700 w-16">Select</th>
+                <th className="p-3 border-b border-gray-300 dark:border-zinc-700 text-left">Name</th>
+                <th className="p-3 border-b border-gray-300 dark:border-zinc-700 text-left">Phone</th>
+                <th className="p-3 border-b border-gray-300 dark:border-zinc-700 text-left">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, i) => {
+                const isSelected = selectedUsers.has(user.id);
+                return (
+                  <tr
+                    key={user.id}
+                    className={`cursor-pointer transition-colors ${
+                      i % 2 === 0
+                        ? "bg-white dark:bg-zinc-900"
+                        : "bg-gray-50 dark:bg-zinc-800"
+                    } ${isSelected ? "bg-blue-100 dark:bg-blue-900" : ""} hover:bg-blue-200 dark:hover:bg-blue-800`}
+                    onClick={() => toggleUserSelection(user.id)}
+                  >
+                    <td className="p-3 text-center">
+                      <input
+                        type="checkbox"
+                        checked={isSelected}
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={() => toggleUserSelection(user.id)}
+                        className="w-5 h-5 cursor-pointer"
+                        aria-label={`Select user ${user.name}`}
+                      />
+                    </td>
+                    <td className="p-3">{user.name}</td>
+                    <td className="p-3">{user.phone}</td>
+                    <td className="p-3">{user.role}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       <button
         onClick={handleSubmit}
         disabled={selectedUsers.size === 0 || !projectId}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+        className="mt-6 w-full sm:w-auto bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg transition"
       >
         Add Selected Users
       </button>
