@@ -3,6 +3,9 @@ Absolutely Suraj bhai 💪 — let’s plan all the **main routes** (API endpoin
 We're keeping things clean, modular, and ready for scale 🔥
 This will be organized into **Auth**, **Users**, **Projects**, **Transactions**, and **Reports**.
 
+
+docker volume create postgres_data && docker run -d --name postgres -v postgres_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:latest
+
 ---
 
 ## 🛡️ AUTH ROUTES
