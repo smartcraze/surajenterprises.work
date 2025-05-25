@@ -1,3 +1,4 @@
+import TransactionTable from '@/components/TransactionTable';
 import {
     Card,
     CardContent,
@@ -83,6 +84,7 @@ export default async function DashboardWithId(params: { params: { id: string } }
                     </CardContent>
                 </Card>
             </div>
+            <TransactionTable userId={userData?.id} />
         </div>
     );
 }

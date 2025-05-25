@@ -1,5 +1,6 @@
 
 import Logout from '@/components/Logout';
+import TransactionTable from '@/components/TransactionTable';
 import {
     Card,
     CardContent,
@@ -84,6 +85,7 @@ export default async function Dashboard() {
                         )}
                     </CardContent>
                 </Card>
+            <TransactionTable userId={userData?.id} />
             </div>
         </div>
     );

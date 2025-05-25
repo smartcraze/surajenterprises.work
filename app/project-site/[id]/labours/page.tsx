@@ -22,6 +22,9 @@ export default async function LabourPage({ params }: LabourPageProps) {
 
   const users = allLabours[0]?.users || [];
 
+
+  
+
   return (
     <div className="container mx-auto p-4 text-gray-900 dark:text-gray-100">
       <h1 className="text-3xl font-bold mb-6">Labour Page</h1>
@@ -53,7 +56,7 @@ export default async function LabourPage({ params }: LabourPageProps) {
           </div>
         ))}
       </div>
-      <LabourPaymentCalculator users={users} />
+        <LabourPaymentCalculator users={users} />
     </div>
   );
 }

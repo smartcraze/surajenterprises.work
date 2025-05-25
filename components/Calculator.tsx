@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
+import toast from "react-hot-toast";
 
 type User = {
   id: string;
@@ -13,6 +14,7 @@ type User = {
   phone: string;
   role: string;
   pictureUrl?: string | null;
+  projectId?: string | null;
 };
 
 
@@ -21,6 +23,7 @@ export function LabourPaymentCalculator({ users }: { users: User[] }) {
   const [daysWorked, setDaysWorked] = useState(0);
   const [hoursWorked, setHoursWorked] = useState(0);
   const [total, setTotal] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const selectedUser = users.find((u) => u.id === selectedId);
 
@@ -45,7 +48,46 @@ export function LabourPaymentCalculator({ users }: { users: User[] }) {
       setTotal(totalAmount);
     }
   };
-  
+
+  const handleAddToDashboard = async () => {
+    if (!selectedUser || total === null) {
+      toast.error("Please calculate the payment first");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const response = await fetch("/api/transactions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: total,
+          type: "PAYMENT",
+          paymentMethod: "UPI",
+          userId: selectedUser.id,
+          projectId: selectedUser.projectId,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.details || "Failed to add payment");
+      }
+
+      toast.success("Payment added successfully!");
+      // Reset form
+      setSelectedId("");
+      setDaysWorked(0);
+      setHoursWorked(0);
+      setTotal(null);
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="mt-12 max-w-xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow p-6 space-y-4">
@@ -59,6 +101,7 @@ export function LabourPaymentCalculator({ users }: { users: User[] }) {
             setTotal(null);
             setDaysWorked(0);
           }}
+          value={selectedId}
         >
           <option value="">Select a labour</option>
           {users.map((user) => (
@@ -85,7 +128,7 @@ export function LabourPaymentCalculator({ users }: { users: User[] }) {
                 <p className="text-sm text-gray-600 dark:text-gray-400">Rate: ₹{selectedUser.rate}/day</p>
               </div>
             </div>
-            <div className=" flex gap-4">
+            <div className="flex gap-4">
               <div>
                 <Label>Days worked</Label>
                 <Input
@@ -119,6 +162,13 @@ export function LabourPaymentCalculator({ users }: { users: User[] }) {
                 Total Pay: ₹{total}
               </div>
             )}
+            <Button 
+              onClick={handleAddToDashboard} 
+              disabled={isSubmitting || total === null}
+              className="w-full"
+            >
+              {isSubmitting ? "Adding..." : "Add to Dashboard"}
+            </Button>
           </>
         )}
       </div>
