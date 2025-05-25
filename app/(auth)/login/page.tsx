@@ -47,7 +47,7 @@ export default function SignInPage() {
 
     setCheckingRole(true)
     try {
-      const res = await fetch(`/api/auth/role-check?phone=${phone}`)
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/role-check?phone=${phone}`)
       const data = await res.json()
 
       if (!res.ok) {
