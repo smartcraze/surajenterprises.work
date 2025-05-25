@@ -11,9 +11,9 @@ import Image from 'next/image';
 export default async function DashboardWithId({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const userId = params.id;
+  const userId = (await params).id;
 
   let userData = null;
 

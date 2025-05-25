@@ -6,6 +6,7 @@ import { NavbarDemo } from "@/components/Navbar";
 import { PT_Sans } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { SearchProvider } from "@/hooks/useSearch";
+// import { TransactionProvider } from "@/hooks/useTransaction";
 
 const ptSans = PT_Sans({
   variable: "--font-pt-sans",
@@ -47,10 +48,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             disableTransitionOnChange
           >
             <SearchProvider>
-
-            <NavbarDemo />
-            {children}
-
+              {/* <TransactionProvider> */}
+                <NavbarDemo />
+                {children}
+              {/* </TransactionProvider> */}
             </SearchProvider>
           </ThemeProvider>
         </body>

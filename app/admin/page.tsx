@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import prisma from "@/lib/db";
 import { IndianRupee, Users, Briefcase, TrendingUp, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { CreateTransactionForm } from "@/components/CreateTransactionForm";
 
 async function getAdminStats() {
   // Get total users
@@ -141,6 +142,10 @@ export default async function AdminPage() {
         </TabsContent>
 
         <TabsContent value="transactions" className="space-y-4">
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold">Transactions</h2>
+            {/* <CreateTransactionForm /> */}
+          </div>
           <Card>
             <CardHeader>
               <CardTitle>Recent Transactions</CardTitle>
