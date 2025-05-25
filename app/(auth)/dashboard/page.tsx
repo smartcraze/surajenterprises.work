@@ -85,8 +85,9 @@ export default async function Dashboard() {
                         )}
                     </CardContent>
                 </Card>
-            <TransactionTable userId={userData?.id} />
+            
             </div>
+            <TransactionTable userId={userData?.id} />
         </div>
     );
 }
