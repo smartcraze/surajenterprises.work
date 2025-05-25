@@ -19,7 +19,7 @@ export default async function Dashboard() {
   let userData = null;
 
   if (userId) {
-    const userRes = await fetch('http://localhost:3000/api/auth/me', {
+    const userRes = await fetch('/api/auth/me', {
       method: 'GET',
       headers: {
         'x-user-id': userId,
