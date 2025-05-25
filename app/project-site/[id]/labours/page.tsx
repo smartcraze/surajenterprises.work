@@ -1,3 +1,4 @@
+import { LabourPaymentCalculator } from "@/components/Calculator";
 import prisma from "@/lib/db";
 import Image from "next/image";
 
@@ -52,6 +53,7 @@ export default async function LabourPage({ params }: LabourPageProps) {
           </div>
         ))}
       </div>
+      <LabourPaymentCalculator users={users} />
     </div>
   );
 }

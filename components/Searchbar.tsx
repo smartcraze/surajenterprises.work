@@ -31,7 +31,7 @@ export const SearchInput = () => {
         <p className="absolute top-full mt-1 text-sm text-gray-500">Loading...</p>
       )}
       {showDropdown && (
-        <ul className="absolute top-full mt-2 w-full bg-white shadow-lg border rounded z-50 max-h-64 overflow-y-auto">
+        <ul className="absolute top-full mt-2 w-full bg-white text-black shadow-lg border rounded z-50 max-h-64 overflow-y-auto">
           {searchResults.map((user) => (
             <li
               key={user.id}

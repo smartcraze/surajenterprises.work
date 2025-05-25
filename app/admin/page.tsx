@@ -1,4 +1,3 @@
-import { LabourPaymentCalculator } from "@/components/Calculator";
 import { CreateProjectsForm } from "@/components/CreateProjectsForm";
 import ListProjects from "@/components/ListProjects";
 import { SearchInput } from "@/components/Searchbar";
@@ -12,7 +11,7 @@ export default function AdminPage() {
             <CreateProjectsForm />
             <ListProjects />
             <SearchInput />
-            <LabourPaymentCalculator users={users} />
+            
             {/* <CreateLabourAccountForm /> */}
             {/* <GenerateReports /> */}
             {/* <GeneratePDFs /> */}
