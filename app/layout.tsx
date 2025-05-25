@@ -6,7 +6,7 @@ import { NavbarDemo } from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import { SearchProvider } from "@/hooks/useSearch";
 // import { TransactionProvider } from "@/hooks/useTransaction";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -43,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* <TransactionProvider> */}
                 <NavbarDemo />
                 {children}
+                <SpeedInsights/>
               {/* </TransactionProvider> */}
             </SearchProvider>
           </ThemeProvider>
