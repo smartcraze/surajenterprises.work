@@ -43,7 +43,7 @@ export default function AboutUs() {
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-xl overflow-hidden shadow-xl border-4 border-yellow-500">
                 <Image
-                  src="/hero.webp"
+                  src="/contractor.png"
                   alt="Surendra Vishwakarma - Lead Contractor"
                   fill
                   className="object-cover"
