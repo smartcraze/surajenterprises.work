@@ -1,5 +1,6 @@
 import { CreateProjectsForm } from "@/components/CreateProjectsForm";
 import ListProjects from "@/components/ListProjects";
+import Logout from "@/components/Logout";
 import { SearchInput } from "@/components/Searchbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -58,8 +59,12 @@ export default async function AdminPage() {
   const stats = await getAdminStats();
 
   return (
-    <div className="container mx-auto p-6 space-y-8">
-      <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+    <div className="container mx-auto p-6 space-y-8 mt-10">
+
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold ">Admin Dashboard</h1>
+        <Logout />
+      </div>
 
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

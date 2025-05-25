@@ -72,7 +72,7 @@ export default  function AddUsersToProject() {
 
     if (res.ok) {
       toast.success("Users added successfully!");
-      router.push(`/projects/${projectId}`);
+      
     } else {
       const errorData = await res.json();
       if (errorData.error) {
