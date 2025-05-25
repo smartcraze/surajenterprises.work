@@ -18,7 +18,7 @@ export default async function DashboardWithId({
   let userData = null;
 
   if (userId) {
-    const userRes = await fetch('/api/auth/me', {
+    const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
