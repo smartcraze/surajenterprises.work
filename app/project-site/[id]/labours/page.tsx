@@ -2,14 +2,10 @@ import { LabourPaymentCalculator } from "@/components/Calculator";
 import prisma from "@/lib/db";
 import Image from "next/image";
 
-interface LabourPageProps {
-  params: {
-    id: string;
-  };
-}
 
-export default async function LabourPage({ params }: LabourPageProps) {
-  const { id: projectId } = params;
+
+export default async function LabourPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: projectId } = await params;
 
   const allLabours = await prisma.project.findMany({
     where: { id: projectId },

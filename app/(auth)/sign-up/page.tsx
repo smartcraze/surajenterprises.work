@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { Role } from "@/generated/prisma"
 import { Toaster } from "react-hot-toast"
 import toast from "react-hot-toast"
+import Image from "next/image"
 
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -78,7 +79,7 @@ export default function SignUpPage() {
         }, 500)
 
         return () => clearTimeout(delayDebounce)
-    }, [phone])
+    }, [phone, toastShown])
 
     const onSubmit = async (data: SignUpForm) => {
         if (mobileExists) {
@@ -212,10 +213,12 @@ export default function SignUpPage() {
                                 className="dark:bg-zinc-800"
                             />
                             {preview && (
-                                <img
+                                <Image
                                     src={preview}
                                     alt="Preview"
-                                    className="mt-2 w-24 h-24 rounded-full object-cover border border-dotted"
+                                    width={96}
+                                    height={96}
+                                    className="mt-2 rounded-full object-cover border border-dotted"
                                 />
                             )}
                         </div>

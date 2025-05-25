@@ -3,16 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/context";
 import { NavbarDemo } from "@/components/Navbar";
-import { PT_Sans } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { SearchProvider } from "@/hooks/useSearch";
 // import { TransactionProvider } from "@/hooks/useTransaction";
-
-const ptSans = PT_Sans({
-  variable: "--font-pt-sans",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +16,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   title: "SURAJ ENTERPRISES",

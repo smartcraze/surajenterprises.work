@@ -16,7 +16,7 @@ export async function GET() {
     } catch (error) {
         return NextResponse.json({
             message: "Failed to fetch projects",
-            error,
+            error: error instanceof Error ? error.message : 'Unknown error'
         }, { status: 500 });
     }
 }
@@ -44,10 +44,10 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json(project);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         return NextResponse.json({
             message: "Failed to create project",
-            error: error.message
+            error: error instanceof Error ? error.message : 'Unknown error'
         }, { status: 500 });
     }
 }

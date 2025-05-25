@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
 
 
 
@@ -88,8 +90,8 @@ export const ProductItem = ({
   src: string;
 }) => {
   return (
-    <a href={href} className="flex space-x-2">
-      <img
+    <Link href={href} className="flex space-x-2">
+      <Image
         src={src}
         width={140}
         height={70}
@@ -104,17 +106,17 @@ export const ProductItem = ({
           {description}
         </p>
       </div>
-    </a>
+    </Link>
   );
 };
 
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <a
+    <Link
       {...rest}
       className="text-neutral-700 dark:text-neutral-200 hover:text-black "
     >
       {children}
-    </a>
+    </Link>
   );
 };

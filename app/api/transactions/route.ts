@@ -26,9 +26,12 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(transaction, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     return NextResponse.json(
-      { error: "Failed to create transaction", details: error.message },
+      { 
+        error: "Failed to create transaction", 
+        details: error instanceof Error ? error.message : 'Unknown error' 
+      },
       { status: 500 }
     );
   }
