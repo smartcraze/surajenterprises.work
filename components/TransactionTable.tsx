@@ -17,7 +17,7 @@ export default async function TransactionTable({ userId }: { userId: string }) {
 
     return (
         <div className="w-full">
-            <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Transaction History</h1>
+            <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center mt-10">Transaction History</h1>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm">
                     <thead className="bg-gray-100 dark:bg-gray-700">
