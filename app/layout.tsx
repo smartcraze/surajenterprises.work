@@ -18,10 +18,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SURAJ ENTERPRISES",
-  description: "Suraj's Construction || suraj Enterprises",
+  title: {
+    template: '%s | SURAJ ENTERPRISES',
+    default: 'SURAJ ENTERPRISES',
+  },
+  description: 'SURAJ ENTERPRISES | SURENDRA VISHWAKARMA',
 
-  keywords: "Suraj's Construction, suraj Enterprises, Construction, Building, Construction Company, Construction Services, Construction Company in India, Construction Company in banglore , contractor in banglore, contractor in india, construction services in banglore, construction services in india, construction company in banglore, construction company in india, construction contractor in banglore, construction contractor in india, construction services in banglore, construction services in india, construction company in banglore, construction company in india, construction contractor in banglore, construction contractor in india",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

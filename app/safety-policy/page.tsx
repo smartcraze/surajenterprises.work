@@ -1,6 +1,11 @@
 import React from 'react';
 import { Shield, AlertCircle, Eye, CheckCircle, Heart } from 'lucide-react';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+    title: 'Safety Policy',
+    description: 'Safety Policy of SURAJ ENTERPRISES',
+};
 const SafetyPolicy = () => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-800 to-blue-900 dark:from-blue-900 dark:to-blue-950 py-6 sm:py-12 px-3 sm:px-6 lg:px-8 text-white">

@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { QuotationCard } from "@/components/QuotationCard";
 export default function QuotationPage() {
     return (
@@ -6,3 +7,10 @@ export default function QuotationPage() {
         </div>
     );
 }
+
+ 
+export const metadata: Metadata = {
+  title: 'Get Quote ',
+  description: 'Get Quote from Surendra Vishwakarma for your construction needs',
+
+};
