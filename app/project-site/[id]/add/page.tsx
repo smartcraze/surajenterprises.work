@@ -64,7 +64,7 @@ export default function AddUsersToProject() {
       if (res.ok) {
         toast.success("Users added successfully!");
         setSelectedUsers(new Set()); // Clear selection on success
-        router.push(`/projects/${projectId}`); // Redirect after adding users
+        router.push(`/admin`); // Redirect after adding users
       } else {
         const errorData = await res.json();
         toast.error(errorData.error || "An unknown error occurred");
