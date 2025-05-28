@@ -4,13 +4,9 @@ import { Project } from "@/generated/prisma";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from 'next';
 
 
-export const metadata: Metadata = {
-    title: 'Projects',
-    description: 'Projects of SURAJ ENTERPRISES',
-};
+
 
 export default function ProjectSection() {
     return (
