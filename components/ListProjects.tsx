@@ -1,13 +1,35 @@
+"use client"
 import { Card } from "./ui/card"
 import { Button } from "./ui/button"
 import Link from "next/link"
-import prisma from "@/lib/db"
-export default async function ListProjects() {
-  const projects = await prisma.project.findMany()
+import { useEffect, useState } from "react";
 
-  if (!projects) {
-    throw new Error("Failed to fetch projects")
-  }
+export default function ListProjects() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch("/api/projects", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []); // ✅ Only run once
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
@@ -32,13 +54,13 @@ export default async function ListProjects() {
             <Link href={`/project-site/${project.id}/edit`}>
               <Button className="w-full">Edit Project</Button>
             </Link>
+
             <Link href={`/project-site/${project.id}/add`}>
               <Button className="w-full">Add Users</Button>
             </Link>
-
           </div>
         </Card>
       ))}
     </div>
-  )
+  );
 }
