@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 function Footer() {
     return (
@@ -92,11 +93,15 @@ function Footer() {
                 </div>
             </div>
 
-            <div className="relative w-full flex mt-8 items-center justify-center px-4">
-                <h1 className="text-center text-4xl md:text-6xl lg:text-[8rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-yellow-500/70 to-amber-700/70 select-none whitespace-nowrap leading-none">
-                    SURAJ ENTERPRISES
-                </h1>
+            <div className="relative w-full aspect-[5/1] overflow-hidden">
+                <Image
+                    src="/perfect.png"
+                    alt="Suraj Enterprises Logo"
+                    fill
+                    className="object-cover object-[center_47%]"
+                />
             </div>
+
         </footer>
     );
 }
