@@ -22,12 +22,11 @@ function Navbar({ className }: { className?: string }) {
     >
       <Menu setActive={setActive}>
         <div className="flex items-center justify-center">
-          <Image src="/crane.gif"
+          <Image src="/logo.png"
             alt="crane"
             width={100}
             height={100}
             className="w-10 h-10 rounded-full"
-            unoptimized
           />
         </div>
 
