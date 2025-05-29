@@ -104,7 +104,7 @@ function Footer() {
 
 export default Footer;
 
-function BottomImage() {
+export function BottomImage() {
     return (
         <div className="relative w-full aspect-[5/1] overflow-hidden">
             <Image
