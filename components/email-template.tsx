@@ -19,6 +19,11 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
 }) => (
     <div style={{ fontFamily: 'Arial, sans-serif', lineHeight: 1.6, color: '#333' }}>
         <h2 style={{ color: '#4F46E5' }}>📩 New Contact Form Submission</h2>
+        <img
+          src="https://cms.surajv.me/logo.png" // Replace with your actual logo URL
+          alt="Logo"
+          style={{ width: '100px', height: '100px' }}
+        />
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <tbody>
                 <tr>
