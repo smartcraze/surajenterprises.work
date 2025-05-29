@@ -36,35 +36,30 @@ export default function AboutUs() {
           </div>
 
           {/* Lead Contractor Section */}
-          <div className="relative bg-gray-800 dark:bg-gray-900 text-white rounded-xl p-8 shadow-lg border-2 border-dashed border-gray-700 dark:border-gray-600">
+          <div className="mt-12 bg-gray-800 dark:bg-gray-900 text-white rounded-xl p-8 shadow-lg border-2 border-dashed border-gray-700 dark:border-gray-600">
             <div className="absolute -top-3 left-8 bg-yellow-500 text-gray-800 font-semibold px-4 py-1 rounded-full text-sm">
-              Lead Contractor
+              
             </div>
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-xl overflow-hidden shadow-xl border-4 border-yellow-500">
-                <Image
-                  src="/logo.png"
-                  alt="Surendra Vishwakarma - Lead Contractor"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 256px, 320px"
-                  priority
-                />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-4xl font-bold mb-4 text-center">Meet Our Contractor</h2>
-                <h3 className="text-3xl font-semibold mb-6 text-yellow-400 ">Surendra Vishwakarma</h3>
-                <div className="space-y-6">
-                  <p className="text-lg leading-relaxed">
-                    With over <span className="font-semibold text-yellow-400">20 years of experience</span> in the construction field, Surendra Vishwakarma is the driving force behind Suraj Enterprises. His journey includes collaborations with industry leaders such as <span className="font-semibold text-yellow-400">Gina Engineering, Sapoorji Pallonji, and Shriram Company</span>, spanning across major cities including Bangalore, Vijayawada, and Pune.
-                  </p>
-                  <p className="text-lg leading-relaxed">
-                    His exceptional leadership and dedication have earned him recognition as the <span className="font-semibold text-yellow-400">Best Contractor</span> on multiple occasions. Throughout his career, he has successfully delivered numerous projects while providing tailored skilled manpower solutions that meet client specifications.
-                  </p>
-                </div>
-              </div>
+            <div className="space-y-6 mt-6">
+              <h3 className="text-3xl font-semibold text-yellow-400 text-center">Our Vision & What We Stand For</h3>
+              <p className="text-lg leading-relaxed">
+                At <span className="font-semibold text-yellow-400">Suraj Enterprises</span>, construction isn’t just a job — it’s our purpose. We are deeply serious about the work we do, the people we hire, and the impact we create. With decades of field experience, we aim to set a new standard in the contracting and construction space.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Our vision is to become one of India’s most trusted and respected names in civil works and skilled manpower solutions. We believe that true success lies in <span className="font-semibold text-yellow-400">commitment, discipline, and skilled execution</span> — and that’s exactly what we deliver on every project. No shortcuts. No compromises.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Every worker we deploy, every contractor we assign, carries the same vision: <span className="italic text-yellow-400">to build with honesty, precision, and pride</span>.
+              </p>
+
+              
+
+              <p className="mt-6 text-center italic text-yellow-400 text-lg">
+                “We don’t just want to be a contractor. We want to be <strong>your</strong> contractor — the one you trust every time.”
+              </p>
             </div>
           </div>
+
 
           {/* Skilled Workers Section */}
           <div className="grid md:grid-cols-2 gap-8">
