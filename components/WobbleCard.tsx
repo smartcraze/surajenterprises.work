@@ -1,15 +1,18 @@
 "use client"
 import { WobbleCard } from "@/components/ui/wobble-card"
 import { Building2, Users, Award, MapPin, Phone, Mail } from "lucide-react"
+import Image from "next/image"
 
 export default function WobbleCardDemo() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-0 max-w-7xl mx-auto w-full">
+      
+      {/* Main Info Card */}
       <WobbleCard
         containerClassName="col-span-1 lg:col-span-2 h-full bg-orange-800 min-h-[500px] lg:min-h-[300px]"
         className=""
       >
-        <div className="max-w-xs">
+        <div className="max-w-full md:max-w-xs">
           <div className="flex items-center gap-2 mb-4">
             <Building2 className="w-8 h-8 text-white" />
             <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
@@ -25,7 +28,9 @@ export default function WobbleCardDemo() {
             <span className="text-orange-300 text-sm">Bangalore, Karnataka</span>
           </div>
         </div>
-        <div className="absolute -right-4 lg:-right-[40%] -bottom-10">
+
+        {/* Floating Experience Badge */}
+        <div className="hidden sm:block absolute right-0 lg:-right-[40%] -bottom-10">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
             <Building2 className="w-16 h-16 text-white mb-4" />
             <div className="text-white text-sm">
@@ -34,30 +39,39 @@ export default function WobbleCardDemo() {
             </div>
           </div>
         </div>
+        <Image
+          src="/vaswani2.jpg"
+          width={500}
+          height={500}
+          alt="linear demo image"
+          className="absolute -right-4 lg:-right-[40%] grayscale filter -bottom-10 object-contain rounded-2xl"
+        />
       </WobbleCard>
 
+      {/* Workforce Card */}
       <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-blue-800">
         <div className="flex items-center gap-2 mb-4">
           <Users className="w-6 h-6 text-white" />
-          <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+          <h2 className="max-w-full text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
             Skilled Workforce
           </h2>
         </div>
-        <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+        <p className="mt-4 max-w-full text-left text-base/6 text-neutral-200">
           Our team of experienced contractors and skilled workers are ready for your next project. Quality workmanship
           guaranteed.
         </p>
-        <div className="absolute bottom-4 right-4">
+        <div className="hidden sm:block absolute bottom-4 right-4">
           <Award className="w-12 h-12 text-blue-300/50" />
         </div>
       </WobbleCard>
 
+      {/* Call to Action Card */}
       <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-green-800 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
-        <div className="max-w-sm">
-          <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+        <div className="max-w-full md:max-w-sm">
+          <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
             Ready to Start Your Construction Project? Hire Suraj Enterprises Today!
           </h2>
-          <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+          <p className="mt-4 max-w-full text-left text-base/6 text-neutral-200">
             From residential buildings to commercial complexes, we've successfully completed hundreds of projects across
             Bangalore. Our experienced team ensures timely delivery and superior quality construction.
           </p>
@@ -72,7 +86,17 @@ export default function WobbleCardDemo() {
             </div>
           </div>
         </div>
-        <div className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10">
+        <Image
+          src="/hero.webp"
+          width={500}
+          height={500}
+          alt="linear demo image"
+          className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10 object-contain rounded-2xl"
+      
+        />
+
+        {/* Floating Stats */}
+        <div className="hidden md:block absolute -right-4 lg:-right-[20%] -bottom-10">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
             <div className="grid grid-cols-2 gap-4 text-center">
               <div>
@@ -98,6 +122,7 @@ export default function WobbleCardDemo() {
             </div>
           </div>
         </div>
+         
       </WobbleCard>
     </div>
   )
