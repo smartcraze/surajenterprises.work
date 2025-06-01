@@ -23,7 +23,7 @@ function Navbar({ className }: { className?: string }) {
       <Menu setActive={setActive}>
         <div className="flex items-center justify-center">
           <Image src="/logo.png"
-            alt="crane"
+            alt="logo"
             width={100}
             height={100}
             className="w-10 h-10 rounded-full"
@@ -31,13 +31,8 @@ function Navbar({ className }: { className?: string }) {
         </div>
 
         <Link href="/" className="text-black dark:text-neutral-200 hover:text-black">Home</Link>
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/services/consulting">Consulting</HoveredLink>
-            <HoveredLink href="/services/development">Development</HoveredLink>
-            <HoveredLink href="/services/support">Support</HoveredLink>
-          </div>
-        </MenuItem>
+        <Link href="/projects" className="text-black dark:text-neutral-200 hover:text-black">Projects</Link>
+
         <MenuItem setActive={setActive} active={active} item="Account">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/dashboard">Dashboard</HoveredLink>
