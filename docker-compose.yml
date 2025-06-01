@@ -1,0 +1,17 @@
+
+services:
+  cms_postgres:
+    container_name: cms_postgres
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cms
+    volumes:
+      - cms_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  cms_postgres_data:
