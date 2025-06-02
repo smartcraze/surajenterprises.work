@@ -56,7 +56,6 @@ export function QuotationCard() {
     doc.setFontSize(25);
     doc.setTextColor(220, 20, 60); // Crimson red
     doc.setFont('helvetica', 'bold');
-    // doc.addImage('/logo.png', 'PNG', 105, 24, 100, 100,  'invert');
     doc.text('SURAJ ENTERPRISES', 105, 24, { align: 'center' });
 
     // Sub-Contractor text
