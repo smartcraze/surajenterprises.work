@@ -47,14 +47,17 @@ export function QuotationCard() {
     // Header - GSTIN, PAN, Mobile
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
-    doc.text('GSTIN : 29BVKPS7648A1ZL   |   PAN No : BVKPS7648A', 14, 12);
-    doc.text('Mob : 9880494435, 9880826136', 200, 12, { align: 'right' });
+    doc.text('GSTIN : 29CLZPV4129D1ZC', 14, 12);
+    doc.text('PAN No : CLZPV4129D', 14, 16);
+    doc.text('Mob : 9880494435', 200, 12, { align: 'right' });
+    doc.text('     9880826136', 200, 16, { align: 'right' });
 
     // Company Name
     doc.setFontSize(25);
     doc.setTextColor(220, 20, 60); // Crimson red
     doc.setFont('helvetica', 'bold');
-    doc.text('SURENDRA VISHWAKARMA', 105, 24, { align: 'center' });
+    // doc.addImage('/logo.png', 'PNG', 105, 24, 100, 100,  'invert');
+    doc.text('SURAJ ENTERPRISES', 105, 24, { align: 'center' });
 
     // Sub-Contractor text
     doc.setFontSize(14);
@@ -64,10 +67,8 @@ export function QuotationCard() {
     // Address & Email
     doc.setFontSize(9.5);
     doc.setFont('helvetica', 'normal');
-    doc.text('Address : No. 67-A, Hurka, Manjhiaon, Garhwa, Jharkhand – 822120,', 105, 38, { align: 'center' });
-    doc.text("#2402, 1st Floor, 3rd Phase, 'B' Sector, Yelahanka New Town, Bangalore – 560064.", 105, 43, { align: 'center' });
-    doc.text('Email : ksurendra1201@gmail.com', 105, 48, { align: 'center' });
-
+    doc.text('Address : #9 , kuvempunagar ,singapura Road , Vidyaranyapura, Bangalore – 560097.', 105, 38, { align: 'center' });
+    doc.text('Email : work.surajenterprises@gmail.com | www.surajenterprises.work', 105, 43, { align: 'center' });
     // Horizontal line
     doc.setDrawColor(41, 128, 185);
     doc.setLineWidth(0.7);
@@ -121,9 +122,10 @@ export function QuotationCard() {
     const footerY = pageHeight - 25;
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
-    doc.text('GSTIN: 29BVKPS7648A1ZL', 14, footerY);
-    doc.text('PAN No: BVKPS7648A', 14, footerY + 5);
-    doc.text('Signature of Engineer/Owner', 120, footerY);
+    doc.text('Signature of Engineer/Owner', 14, footerY);
+    doc.text('By accepting the above hereby', 14, footerY + 5);
+    doc.text('Place order to executive', 14, footerY + 10);
+
     doc.text('Contractor Sign. Agreed to Execute', 120, footerY + 5);
 
     // Save PDF file
