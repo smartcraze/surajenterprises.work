@@ -215,7 +215,6 @@ export default function LedgerFilter() {
         </table>
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center gap-2 mt-4">
           <Button
