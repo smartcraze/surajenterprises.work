@@ -1,4 +1,5 @@
 import AddLedgerModal from '@/components/Ledger/EntryForm';
+import ListLedgerEntries from '@/components/Ledger/ListLedgerEntries';
 import React from 'react';
 
 function Page() {
@@ -7,6 +8,9 @@ function Page() {
       <h1 className="text-2xl font-bold">Ledger</h1>
       <div className="flex gap-4">
         <AddLedgerModal />
+      </div>
+      <div className="">
+        <ListLedgerEntries />
       </div>
     </div>
   );
