@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify, type JWTPayload } from "jose";
 
-const protectedRoutes = ["/dashboard", "/admin", "/project-site"];
+const protectedRoutes = ["/dashboard", "/admin", "/project-site", "/ledger"];
 
 
 function getJwtSecretKey(): Uint8Array {
@@ -29,7 +29,7 @@ export async function middleware(req: NextRequest) {
     if (payload?.role) requestHeaders.set("x-user-role", payload.role as string);
 
     // 👉 block non-admin from accessing /admin
-    if (pathname.startsWith("/admin") && payload.role !== "ADMIN") {
+    if ((pathname.startsWith("/admin") || pathname.startsWith("/ledger")) && payload.role !== "ADMIN") {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
 
@@ -45,5 +45,5 @@ export async function middleware(req: NextRequest) {
 
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/admin/:path*", "/project-site/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*", "/project-site/:path*", "/ledger/:path*"],
 };

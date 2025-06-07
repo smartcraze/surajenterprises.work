@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import Link from "next/link"
 
 const signInSchema = z.object({
   phone: z
@@ -47,7 +48,7 @@ export default function SignInPage() {
 
     setCheckingRole(true)
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/role-check?phone=${phone}`)
+      const res = await fetch(`/api/auth/role-check?phone=${phone}`)
       const data = await res.json()
 
       if (!res.ok) {
@@ -75,7 +76,7 @@ export default function SignInPage() {
     setIsSubmitting(true)
 
     try {
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -136,6 +137,9 @@ export default function SignInPage() {
             </Button>
           )}
         </form>
+        <div className="flex justify-center mt-4">
+          <Link href="/sign-up" className="text-sm text-gray-500 dark:text-gray-400">Sign Up</Link>
+        </div>
       </Card>
     </div>
   )

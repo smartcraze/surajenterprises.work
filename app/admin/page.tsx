@@ -2,10 +2,12 @@ import { CreateProjectsForm } from "@/components/CreateProjectsForm";
 import ListProjects from "@/components/ListProjects";
 import Logout from "@/components/Logout";
 import { SearchInput } from "@/components/Searchbar";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import prisma from "@/lib/db";
-import { IndianRupee, Users, Briefcase, TrendingUp, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { IndianRupee, Users, Briefcase, TrendingUp, ArrowUpRight, ArrowDownRight, BookOpen, } from "lucide-react";
+import Link from "next/link";
 
 async function getAdminStats() {
   // Get total users
@@ -63,8 +65,17 @@ export default async function AdminPage() {
 
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold ">Admin Dashboard</h1>
-        <Logout />
+        <div className="flex items-center gap-2">
+          <Link href="/ledger">
+            <Button variant="outline">
+              <BookOpen className="w-4 h-4" />
+              Ledger
+            </Button>
+          </Link>
+          <Logout />
+        </div>
       </div>
+       
 
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
