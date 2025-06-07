@@ -93,5 +93,5 @@ model LedgerBook{
   type TransactionType
   paymentMethod PaymentMethod
   LabourName String
-
+  phoneNumber String
 }
