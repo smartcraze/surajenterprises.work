@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion"; // ✅ Correct import
 import Image from "next/image";
 import Link from "next/link";
 
-
-
+// ✅ Fix: Use a compatible transition object for Framer Motion
 const transition = {
-  type: "spring",
+  type: "spring" as const, // ✅ Type assertion to satisfy the typing
   mass: 0.5,
   damping: 11.5,
   stiffness: 100,
@@ -27,7 +26,7 @@ export const MenuItem = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative ">
+    <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
@@ -41,16 +40,13 @@ export const MenuItem = ({
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4 z-50">
               <motion.div
                 transition={transition}
-                layoutId="active" // layoutId ensures smooth animation
+                layoutId="active"
                 className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
               >
-                <motion.div
-                  layout // layout ensures smooth animation
-                  className="w-max h-full p-4"
-                >
+                <motion.div layout className="w-max h-full p-4">
                   {children}
                 </motion.div>
               </motion.div>
@@ -61,6 +57,7 @@ export const MenuItem = ({
     </div>
   );
 };
+
 export const Menu = ({
   setActive,
   children,
@@ -71,7 +68,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-2xl border border-white/30 dark:border-white/20  dark:bg-black/30 backdrop-blur-md shadow-input flex justify-center space-x-4 px-4 py-4 items-center"
+      className="relative rounded-2xl border border-white/30 dark:border-white/20 dark:bg-black/30 backdrop-blur-md shadow-input flex justify-center space-x-4 px-4 py-4 items-center"
     >
       {children}
     </nav>
@@ -110,11 +107,17 @@ export const ProductItem = ({
   );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
+export const HoveredLink = ({
+  children,
+  ...rest
+}: {
+  children: React.ReactNode;
+  href: string;
+}) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
+      className="text-neutral-700 dark:text-neutral-200 hover:text-black"
     >
       {children}
     </Link>
