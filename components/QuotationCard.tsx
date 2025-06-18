@@ -66,7 +66,7 @@ export function QuotationCard() {
     // Address & Email
     doc.setFontSize(9.5);
     doc.setFont('helvetica', 'normal');
-    doc.text('Address : #9 , kuvempunagar ,singapura Road , Vidyaranyapura, Bangalore – 560097.', 105, 38, { align: 'center' });
+    
     doc.text('Email : work.surajenterprises@gmail.com | www.surajenterprises.work', 105, 43, { align: 'center' });
     // Horizontal line
     doc.setDrawColor(41, 128, 185);
