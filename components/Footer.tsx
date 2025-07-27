@@ -81,7 +81,7 @@ function Footer() {
                     <h2 className="text-gray-900 dark:text-white text-lg font-semibold mb-4">Contact Us</h2>
                     <p className="mb-2">
                         <span className="hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors duration-300 text-gray-700 dark:text-gray-400">
-                            Phone: +91 9880494435
+                            Phone: +91 7488659074
                         </span>
                     </p>
                     <p className="mb-2">
