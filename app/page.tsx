@@ -5,7 +5,7 @@ export default function Home() {
   return(
     <main>
       <HeroSection />
-      <FeaturedImages />
+      <FeaturedImages path="/hero.webp"/>
     </main>
   )
 }

@@ -2,6 +2,7 @@
 import React from "react";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -30,6 +31,7 @@ export function HeroSection() {
           >
             Get a Quote
           </Button>
+          <Link href="/projects">
           <Button
             variant="outline"
             size="lg"
@@ -37,6 +39,7 @@ export function HeroSection() {
           >
             View Our Work
           </Button>
+          </Link>
         </div>
       </div>
     </div>
