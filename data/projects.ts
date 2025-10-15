@@ -4,7 +4,6 @@ interface Project {
   title: string;
   description: string;
   imageUrl: string[];
-  category: string;
 }
 
 const projects: Project[] = [
@@ -13,14 +12,12 @@ const projects: Project[] = [
     title: "Vaswani Star Light",
     description: " Vaswani Star Light is a residential project located in Bangalore, India. It offers luxurious apartments with modern amenities and beautiful views.",
     imageUrl: ["/projects/img1.jpg", "/projects/img2.jpg", "/projects/img3.jpg"],
-    category: "Category A",
   },
   {
     id: 2,
     title: "Brigade Eternia ",
     description: "Brigade Eternia  from brigade group a residential project located in Bangalore, India. It offers luxurious apartments with modern amenities and beautiful views.",
     imageUrl: ["/projects/img4.jpg", "/projects/img5.jpg", "/projects/img6.jpg"],
-    category: "Category B",
   },
 ];
 

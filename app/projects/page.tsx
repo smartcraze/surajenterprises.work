@@ -6,20 +6,11 @@ import { motion } from "framer-motion";
 import { ChevronUpIcon } from "lucide-react";
 
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   
   const projects = getAllProjects();
   const completedProjects = getCompletedProjects();
-  
-  // Get unique categories
-  const categories = ["all", ...new Set(projects.map(project => project.category))];
-  
-  // Filter projects by category
-  const filteredProjects = selectedCategory === "all" 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,25 +39,9 @@ export default function Projects() {
         <h1 className="text-4xl font-bold text-center mb-8 text-neutral-900 dark:text-neutral-100">
           Current Ongoing Projects
         </h1>
-        
-        <div className="flex justify-center gap-4 mb-8 flex-wrap">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full transition-all duration-300 ${
-                selectedCategory === category
-                ? "bg-blue-500 text-white"
-                : "bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-blue-400 hover:text-white"
-              }`}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
-          ))}
-        </div>
 
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        {filteredProjects.map((project, idx) => (
+        {projects.map((project, idx) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 20 }}
@@ -82,9 +57,6 @@ export default function Projects() {
                 height={400}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
-                {project.category}
-              </div>
             </div>
 
             <div className="p-6 space-y-4">
