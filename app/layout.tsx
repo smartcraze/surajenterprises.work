@@ -4,11 +4,6 @@ import "./globals.css";
 import { NavbarDemo } from "@/components/navbar";
 import {
   ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
 } from "@clerk/nextjs";
 import WhatsAppButton from "@/components/WhatsAppButton";
 const geistSans = Geist({
@@ -39,6 +34,7 @@ export default function RootLayout({
         >
           <NavbarDemo />
           {children}
+          
           <WhatsAppButton />
         </body>
       </html>
