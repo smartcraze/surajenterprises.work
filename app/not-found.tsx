@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Construction, Home, HardHat, AlertTriangle } from "lucide-react";
+import { Construction, Home, HardHat } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -36,7 +36,7 @@ export default function NotFound() {
             Page Under Construction
           </h2>
           <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
-            Looks like this page hasn't been built yet. Our team is working on it!
+            Looks like this page hasn&apos;t been built yet. Our team is working on it!
           </p>
         </div>
 
@@ -51,7 +51,7 @@ export default function NotFound() {
             <div className="text-left">
               <h3 className="font-semibold text-neutral-900 mb-1.5 text-base">Construction Notice</h3>
               <p className="text-sm text-neutral-700">
-                The page you're looking for might have been moved, deleted, or is currently under development.
+                The page you&apos;re looking for might have been moved, deleted, or is currently under development.
               </p>
             </div>
           </div>

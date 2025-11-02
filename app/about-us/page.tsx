@@ -1,37 +1,8 @@
 import React from "react";
-import { Building2, Award, Users, TrendingUp, Target, Heart } from "lucide-react";
+import { Building2 } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutUsPage() {
-  const milestones = [
-    { year: "2005", title: "Company Founded", description: "Started our journey in construction industry" },
-    { year: "2010", title: "100+ Projects", description: "Completed our 100th successful project" },
-    { year: "2015", title: "Industry Recognition", description: "Awarded for excellence in construction" },
-    { year: "2020", title: "500+ Workforce", description: "Expanded our team of skilled professionals" },
-    { year: "2025", title: "2 Decades of Excellence", description: "Celebrating 20 years of trusted service" },
-  ];
-
-  const values = [
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: "Commitment to Quality",
-      description: "Every project meets the highest standards of excellence and precision",
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Skilled Workforce",
-      description: "500+ trained professionals dedicated to delivering exceptional results",
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Client Satisfaction",
-      description: "Building lasting relationships through trust and reliability",
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      title: "Industry Leadership",
-      description: "Partnering with India's leading construction companies",
-    },
-  ];
 
   return (
     <main className="relative min-h-screen bg-neutral-50 dark:bg-neutral-950">
@@ -105,7 +76,7 @@ export default function AboutUsPage() {
               </p>
               <p>
                 Throughout our 20-year legacy, we have had the privilege of
-                working with India's most prestigious construction firms,
+                working with India&apos;s most prestigious construction firms,
                 including{" "}
                 <strong>
                   Brigade, Shapoorji Pallonji, Purva, Umiya, Vaswani
@@ -127,18 +98,18 @@ export default function AboutUsPage() {
             for their construction needs
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
+            <Link
               href="/meet"
               className="px-8 py-4 bg-white text-amber-600 font-bold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all"
             >
               Schedule a Consultation
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className="px-8 py-4 bg-neutral-900 text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       </div>

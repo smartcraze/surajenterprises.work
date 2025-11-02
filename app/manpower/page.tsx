@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { Construction, HardHat, Users, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function ManpowerPage() {
   const manpowerImages = [
@@ -197,7 +196,7 @@ export default function ManpowerPage() {
           </h2>
 
           <p className="text-lg text-neutral-700 max-w-2xl mx-auto mb-8">
-            Don't wait! Get started at the earliest with our expert team.
+            Don&apos;t wait! Get started at the earliest with our expert team.
             <br />
             <span className="font-semibold text-amber-700">
               Talk to us on WhatsApp now and bring your construction vision to life!
@@ -211,7 +210,7 @@ export default function ManpowerPage() {
             className="inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 hover:scale-105 transition-transform text-lg shadow-lg"
           >
             <MessageCircle className="w-6 h-6" />
-            Chat on WhatsApp - Let's Start Today!
+            Chat on WhatsApp - Let&apos;s Start Today!
           </a>
 
           <p className="mt-6 text-sm text-neutral-600">

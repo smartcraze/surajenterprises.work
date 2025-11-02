@@ -161,7 +161,7 @@ export function ComplianceSection() {
               </h3>
               
               <p className="text-xl md:text-2xl text-neutral-300 font-medium mb-8 max-w-3xl mx-auto">
-                "Building Excellence, One Safe Step at a Time"
+                &quot;Building Excellence, One Safe Step at a Time&quot;
               </p>
 
               {/* Safety Stats */}
@@ -227,9 +227,9 @@ export function ComplianceSection() {
 
               <div className="space-y-6">
                 <div className="bg-neutral-50 dark:bg-neutral-800 rounded-xl p-6 shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <div className="text-6xl text-neutral-400 dark:text-neutral-600 font-serif mb-2">"</div>
+                  <div className="text-6xl text-neutral-400 dark:text-neutral-600 font-serif mb-2">&quot;</div>
                   <p className="text-lg font-semibold text-neutral-800 dark:text-neutral-200 italic mb-2">
-                    Safety doesn't happen by accident
+                    Safety doesn&apos;t happen by accident
                   </p>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     Every project begins with comprehensive safety planning
@@ -237,7 +237,7 @@ export function ComplianceSection() {
                 </div>
 
                 <div className="bg-neutral-50 dark:bg-neutral-800 rounded-xl p-6 shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <div className="text-6xl text-neutral-400 dark:text-neutral-600 font-serif mb-2">"</div>
+                  <div className="text-6xl text-neutral-400 dark:text-neutral-600 font-serif mb-2">&quot;</div>
                   <p className="text-lg font-semibold text-neutral-800 dark:text-neutral-200 italic mb-2">
                     No job is so important that we cannot take time to do it safely
                   </p>
