@@ -11,7 +11,7 @@ export function HeroSection() {
       <BackgroundRippleEffect />
 
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto">
-        {/* Badge */}
+
        
 
         <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-neutral-900 dark:text-white leading-tight animate-fade-in-up">

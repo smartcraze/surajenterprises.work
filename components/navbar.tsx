@@ -28,6 +28,10 @@ export function NavbarDemo() {
       name: "Contact",
       link: "contact",
     },
+    {
+      name: "About Us",
+      link: "about-us",
+    }
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,7 +52,12 @@ export function NavbarDemo() {
             <SignedIn>
               <UserButton />
             </SignedIn>
-            <NavbarButton variant="dark">Book a Meeting</NavbarButton>
+            <Link 
+              href="/meet"
+              className="relative z-[70] px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 cursor-pointer inline-block"
+            >
+              Book a Meeting
+            </Link>
           </div>
         </NavBody>
 
@@ -77,13 +86,13 @@ export function NavbarDemo() {
               </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
+              <Link 
+                href="/meet" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
+                className="w-full px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-lg shadow-md text-center inline-block"
               >
                 Book a Meeting
-              </NavbarButton>
+              </Link>
               <SignedIn>
                 <UserButton />
               </SignedIn>
@@ -96,4 +105,3 @@ export function NavbarDemo() {
     </div>
   );
 }
-
