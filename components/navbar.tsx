@@ -10,6 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,19 +18,19 @@ export function NavbarDemo() {
   const navItems = [
     {
       name: "Services",
-      link: "#services",
+      link: "services",
     },
     {
       name: "Projects",
-      link: "#projects",
+      link: "projects",
     },
     {
       name: "Manpower",
-      link: "#manpower",
+      link: "manpower",
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "contact",
     },
   ];
 
@@ -43,7 +44,14 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-          
+            <SignedOut>
+              <SignInButton>
+                <NavbarButton variant="secondary">Sign In</NavbarButton>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
             <NavbarButton variant="dark">Book a Meeting</NavbarButton>
           </div>
         </NavBody>
@@ -73,7 +81,6 @@ export function NavbarDemo() {
               </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
-              
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
@@ -81,6 +88,9 @@ export function NavbarDemo() {
               >
                 Book a Meeting
               </NavbarButton>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
             </div>
           </MobileNavMenu>
         </MobileNav>

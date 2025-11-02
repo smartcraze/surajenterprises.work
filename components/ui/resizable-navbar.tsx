@@ -243,7 +243,7 @@ export const NavbarLogo = () => {
         alt="logo"
         width={40}
         height={40}
-        className="invert"
+        className=" invert"
       />
       <span className="font-bold text-black dark:text-white">Suraj Enterprises</span>
     </Link>
