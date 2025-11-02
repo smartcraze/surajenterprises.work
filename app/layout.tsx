@@ -10,6 +10,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import WhatsAppButton from "@/components/WhatsAppButton";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         >
           <NavbarDemo />
           {children}
+          <WhatsAppButton />
         </body>
       </html>
     </ClerkProvider>
