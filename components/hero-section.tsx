@@ -50,7 +50,7 @@ export function HeroSection() {
           </Link>
         </div>
         
-        {/* Key Features Grid */}
+
         <FeatureCards />
       </div>
     </div>
