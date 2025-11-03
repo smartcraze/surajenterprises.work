@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Replace with actual code from Google Search Console
+    google: 'fFq6pZ7UVzHf9eutETGVyOO5aDXbnE68mNVvi45ry9g',
   },
   category: 'construction',
   alternates: {
@@ -97,15 +97,24 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <meta
+          name="google-site-verification"
+          content="fFq6pZ7UVzHf9eutETGVyOO5aDXbnE68mNVvi45ry9g"
+        />
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <NavbarDemo />
           {children}
-          
+
           <WhatsAppButton />
         </body>
       </html>
     </ClerkProvider>
   );
 }
+
+<meta
+  name="google-site-verification"
+  content="fFq6pZ7UVzHf9eutETGVyOO5aDXbnE68mNVvi45ry9g"
+/>;
